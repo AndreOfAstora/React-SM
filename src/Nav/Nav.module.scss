@@ -1,0 +1,15 @@
+.nav{
+    background-color: #61b0fb;
+}
+
+.item{
+
+    & a {
+      text-decoration: none;
+      color: rgb(9, 0, 139);
+    }   
+
+    & a.active {
+      color: darkmagenta;
+    }
+}

@@ -1,0 +1,16 @@
+.post {
+  text-decoration: underline;
+  color: rgb(32, 51, 218);
+  background: hotpink;
+  margin-top: 20px;
+  padding: 15px;
+  width: 70%;
+
+  & img {
+    margin-right: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+}
+
