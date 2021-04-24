@@ -5,7 +5,7 @@ import Post from './Post/Post';
 function MyPosts(props) {
   
 
-  let postDom = props.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
+  let postDom = props.store.getState().profilePage.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
 
   let newPostElement = React.createRef();
 
@@ -13,13 +13,13 @@ function MyPosts(props) {
 
     
     let text = newPostElement.current.value;
-    props.addPost(text);
+    props.store.addPost(text);
   }
 
   let onPostChange = () => {
     debugger;
     let text = newPostElement.current.value;
-    props.updateNewPostText(text);
+    props.store.updateNewPostText(text);
 
   }
 
@@ -27,7 +27,7 @@ function MyPosts(props) {
     <div className={ s.container }>
       <textarea ref={ newPostElement } 
                 onChange={ onPostChange }
-                value = { props.newPostText }/>
+                value = { props.store.getState().profilePage.newPostText }/>
       <button onClick={ addPost }>
         Add post
       </button>      

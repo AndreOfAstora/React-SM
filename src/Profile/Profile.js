@@ -5,7 +5,7 @@ function Profile(props) {
   return (
     <div className={ s.container }>
       Profile
-      <MyPosts postData={ props.state.postData } addPost={ props.addPost } newPostText={ props.state.newPostText } updateNewPostText={ props.updateNewPostText }/>
+      <MyPosts store = { props.store }/>
     </div>        
   )
 }

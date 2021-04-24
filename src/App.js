@@ -12,12 +12,11 @@ function App(props) {
       <div className="app-wrapper">
         <Header/>    
         <div className='app__lower'>
-          <Nav state={props.state.sideNav}/>        
+          <Nav state={props.store.getState().sideNav}/>        
           <div className='main'>
             <Route path='/profile' 
-                  render={ () => <Profile state={ props.state.profilePage } 
-                  addPost={ props.addPost } updateNewPostText={ props.updateNewPostText }/> }/>
-            <Route path='/dialogs' render={ () => <Dialogs state={ props.state.dialogsPage }/> }/>
+                  render={ () => <Profile store = { props.store }/> }/>
+            <Route path='/dialogs' render={ () => <Dialogs store={ props.store }/> }/>
           </div>
         </div>
       </div>

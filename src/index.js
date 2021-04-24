@@ -2,29 +2,26 @@
 import './index.css';
 // import {App, Header} from './App';
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state';
 //addPost("Exercising regularly makes you smarter.");
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import {addPost, updateNewPostText, subscribe} from './redux/state';
+import store from './redux/store';
 
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (store) => {
  debugger;
  ReactDOM.render(
    <React.StrictMode>   
-     <App state={state} 
-          addPost={ addPost } 
-          updateNewPostText={ updateNewPostText }/>
+     <App store={ store }/>
    </React.StrictMode>,
    document.getElementById('root')
  );
 }
 
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree);
+rerenderEntireTree(store);
+store.subscribe(rerenderEntireTree);
 
 
 
