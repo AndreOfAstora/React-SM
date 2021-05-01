@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import store from './redux/store';
+import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/state';
 
 
 let rerenderEntireTree = (state) => {
@@ -13,7 +13,9 @@ let rerenderEntireTree = (state) => {
  ReactDOM.render(
    <React.StrictMode>   
      <App state={ state } 
-          dispatch={ store.dispatch.bind(store) } 
+          dispatch={ store.dispatch.bind(store) }
+          addPostActionCreator = { addPostActionCreator }
+          updateNewPostTextActionCreator = { updateNewPostTextActionCreator } 
      />
    </React.StrictMode>,
    document.getElementById('root')
