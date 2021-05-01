@@ -53,32 +53,55 @@ let store = {
     return this._state;
   },
 
-  addPost(postMessage) {
+  // addPost(postMessage) {
 
-    let newPost = {
-      link: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
-      text: postMessage,
-      color: '#308816'
-    };
+  //   let newPost = {
+  //     link: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
+  //     text: this._state.profilePage.newPostText,
+  //     color: '#308816'
+  //   };
 
-    this._state.profilePage.postData.push(newPost);
+  //   this._state.profilePage.postData.push(newPost);
 
-    this._state.profilePage.newPostText = placeHolders.newPostText;
+  //   this._state.profilePage.newPostText = placeHolders.newPostText;
 
-    this._rerenderEntireTree(this._state);
-  },
+  //   this._rerenderEntireTree(this._state);
+  // },
 
-  updateNewPostText(newText) {
+  // updateNewPostText(newText) {
 
-    debugger;
+  //   debugger;
 
-    this._state.profilePage.newPostText = newText;
+  //   this._state.profilePage.newPostText = newText;
 
-    this._rerenderEntireTree(this._state);
-  },
+  //   this._rerenderEntireTree(this._state);
+  // },
 
-  subscribe(observer){
+  subscribe(observer) {
     this._rerenderEntireTree = observer;
+  },
+
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+
+      let newPost = {
+        link: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
+        text: this._state.profilePage.newPostText,
+        color: '#308816'
+      };
+  
+      this._state.profilePage.postData.push(newPost);  
+      this._state.profilePage.newPostText = placeHolders.newPostText;
+  
+      this._rerenderEntireTree(this._state);
+
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+
+      this._state.profilePage.newPostText = action.newText;
+
+      this._rerenderEntireTree(this._state);
+
+    }
   }
 
 }
