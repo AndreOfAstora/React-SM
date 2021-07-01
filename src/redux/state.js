@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+
 let placeHolders = {
   newPostText:'text'
 };
@@ -18,7 +21,7 @@ let store = {
         { link: "https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png", text: "Traversing software documentation is hard, use copybook and mind maps to make it easy.", color: '#308816' },
         { link: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png', text: "Here's how simple rest and frequent breaks have an NZT effect on human brain.", color: 'red' }
       ],
-      newPostText: placeHolders.newPostText
+      newPostText: ''
     },
 
     dialogsPage: {
@@ -90,46 +93,14 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
 
-      let newPost = {
-        link: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
-        text: this._state.profilePage.newPostText,
-        color: '#308816'
-      };
-  
-      this._state.profilePage.postData.push(newPost);  
-      this._state.profilePage.newPostText = placeHolders.newPostText;
-  
-      this._rerenderEntireTree(this._state);
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
 
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
 
-      this._state.profilePage.newPostText = action.newText;
+    
 
       this._rerenderEntireTree(this._state);
-
-    } else if (action.type === SEND_MESSAGE) {
-
-      let messageId = this._state.dialogsPage.messageData.lenght + 1;
-
-      let newMessage = {
-        id: messageId,
-        message: this._state.dialogsPage.newMessageBody
-      };
-
-      this._state.dialogsPage.messageData.push(newMessage);
-      this._state.dialogsPage.newMessageBody = '';
-
-      this._rerenderEntireTree(this._state);
-
-    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-
-      this._state.dialogsPage.newMessageBody = action.newMessage;
-
-      this._rerenderEntireTree(this._state);
-
-    }
 
   }
 
