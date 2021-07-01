@@ -1,31 +1,26 @@
 import React from 'react';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../redux/state';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
+
 
 function MyPosts(props) {
   
 
   let postDom = props.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
 
-  let newPostElement = React.createRef();
-
   let addPost = () => {
-    let text = newPostElement.current.value;
-    debugger;
-    props.dispatch( props.addPostActionCreator() );
+    props.dispatch( addPostActionCreator() );
   }
 
-  let onPostChange = () => {
-    debugger;
-    let text = newPostElement.current.value;
-    props.dispatch( props.updateNewPostTextActionCreator(text) );
-
+  let onPostChange = (e) => {
+    let text = e.target.value;
+    props.dispatch( updateNewPostTextActionCreator(text) );
   }
 
   return (
     <div className={ s.container }>
-      <textarea ref={ newPostElement } 
-                onChange={ onPostChange }
+      <textarea onChange={ onPostChange }
                 value = { props.newPostText }/>
       <button onClick={ addPost }>
         Add post

@@ -6,24 +6,24 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/state';
+import { BrowserRouter } from 'react-router-dom';
+
 
 
 let rerenderEntireTree = (state) => {
- debugger;
- ReactDOM.render(
-   <React.StrictMode>   
-     <App state={ state } 
-          dispatch={ store.dispatch.bind(store) }
-          addPostActionCreator = { addPostActionCreator }
-          updateNewPostTextActionCreator = { updateNewPostTextActionCreator } 
-     />
-   </React.StrictMode>,
-   document.getElementById('root')
- );
+  ReactDOM.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App  state={ state }
+              dispatch={ store.dispatch.bind(store) } />
+      </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
 }
 
-rerenderEntireTree(store.getState());
-store.subscribe(rerenderEntireTree);
+rerenderEntireTree( store.getState() );
+store.subscribe( rerenderEntireTree );
 
 
 

@@ -7,9 +7,7 @@ function Profile(props) {
       Profile
       <MyPosts  postData={ props.state.postData } 
                 newPostText={ props.state.newPostText } 
-                dispatch={ props.dispatch }
-                addPostActionCreator = { props.addPostActionCreator }
-                updateNewPostTextActionCreator = { props.updateNewPostTextActionCreator }/>
+                dispatch={ props.dispatch }/>
     </div>        
   )
 }

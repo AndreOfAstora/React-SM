@@ -8,21 +8,22 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 function App(props) {
   return (
-    <BrowserRouter>
-      <div className="app-wrapper">
-        <Header/>    
-        <div className='app__lower'>
-          <Nav state={props.state.sideNav}/>        
-          <div className='main'>
-            <Route  path='/profile' 
-                    render={ () => <Profile state={ props.state.profilePage } 
-                                            dispatch={ props.dispatch } 
-                                            addPostActionCreator = { props.addPostActionCreator }updateNewPostTextActionCreator = { props.updateNewPostTextActionCreator }/> }/>
-            <Route path='/dialogs' render={ () => <Dialogs state={ props.state.dialogsPage }/> }/>
-          </div>
+    <div className="app-wrapper">
+      <Header/>    
+      <div className='app__lower'>
+        <Nav state={props.state.sideNav}/>        
+        <div className='main'>
+          <Route  path='/profile' 
+                  render={ () => <Profile  
+                      state={ props.state.profilePage } 
+                      dispatch={ props.dispatch } /> }/>
+          <Route  path='/dialogs' 
+                  render={ () => <Dialogs 
+                      state={ props.state.dialogsPage }
+                      dispatch={ props.dispatch }/> }/>
         </div>
       </div>
-    </BrowserRouter>    
+    </div>   
   );
 }
 
