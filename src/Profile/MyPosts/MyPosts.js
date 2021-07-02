@@ -1,11 +1,10 @@
 import React from 'react';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../redux/state';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../redux/profileReducer';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 
 
-function MyPosts(props) {
-  
+function MyPosts(props) {  
 
   let postDom = props.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
 
