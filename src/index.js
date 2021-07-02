@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/state';
+import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 
 
@@ -23,7 +23,10 @@ let rerenderEntireTree = (state) => {
 }
 
 rerenderEntireTree( store.getState() );
-store.subscribe( rerenderEntireTree );
+store.subscribe( () => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+} );
 
 
 
