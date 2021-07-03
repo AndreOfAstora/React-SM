@@ -10,22 +10,20 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (store) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App  state={ state }
-              dispatch={ store.dispatch.bind(store) } />
+        <App  store = { store } />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
 
-rerenderEntireTree( store.getState() );
+rerenderEntireTree( store );
 store.subscribe( () => {
-  let state = store.getState();
-  rerenderEntireTree(state);
+  rerenderEntireTree(store);
 } );
 
 

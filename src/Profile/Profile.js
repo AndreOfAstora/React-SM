@@ -1,13 +1,12 @@
 import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import s from './Profile.module.scss';
 
 function Profile(props) {
   return (
     <div className={ s.container }>
-      Profile
-      <MyPosts  postData={ props.state.postData } 
-                newPostText={ props.state.newPostText } 
-                dispatch={ props.dispatch }/>
+      Profile      
+      <MyPostsContainer store = { props.store }/>
     </div>        
   )
 }

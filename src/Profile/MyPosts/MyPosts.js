@@ -6,15 +6,16 @@ import Post from './Post/Post';
 
 function MyPosts(props) {  
 
+  
   let postDom = props.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
 
   let addPost = () => {
-    props.dispatch( addPostActionCreator() );
+    props.addPost();
   }
 
   let onPostChange = (e) => {
     let text = e.target.value;
-    props.dispatch( updateNewPostTextActionCreator(text) );
+    props.updateNewPostText(text);
   }
 
   return (

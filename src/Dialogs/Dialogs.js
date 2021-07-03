@@ -21,22 +21,22 @@ function Message (props) {
 
 function Dialogs (props) {
 
-  let dialogsDom = props.state.dialogsData
+
+  let dialogsDom = props.dialogsData
     .map ( dialog => <DialogItem id={dialog.id} name={dialog.name}/>);
 
-  let messageDom = props.state.messageData
+  let messageDom = props.messageData
     .map ( msg => <Message message={msg.message}/>);
-
-  
+      
 
   let send = () => {
-    props.dispatch(sendMessageCreator());
+    props.sendMessage();
 
   }
 
   let onMessageChange = (e) => {
     let text = e.target.value;
-    props.dispatch(updateNewMessageBodyCreator(text));
+    props.updateNewMessageBody(text);
   }
 
   return (
@@ -47,7 +47,7 @@ function Dialogs (props) {
       <div className={s.dialogs_messages}>
         {messageDom}             
         <textarea onChange={ onMessageChange }
-                  value={ props.state.newMessageBody }/>
+                  value={ props.newMessageBody }/>
         <button onClick={send}>Send</button>
       </div>      
     </div>   
