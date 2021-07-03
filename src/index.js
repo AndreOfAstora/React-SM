@@ -7,6 +7,7 @@ import App from './App';
 
 import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
+import StoreContext from './storeContext';
 
 
 
@@ -14,8 +15,10 @@ let rerenderEntireTree = (store) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App  store = { store } />
-      </BrowserRouter>
+        <StoreContext.Provider value = {store}>
+          <App/>
+        </StoreContext.Provider>
+      </BrowserRouter>      
     </React.StrictMode>,
     document.getElementById('root')
   );

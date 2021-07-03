@@ -5,13 +5,17 @@ import Nav from './Nav/Nav';
 import Profile from './Profile/Profile';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
+import StoreContext from './storeContext';
 
-function App(props) {
+function App(props) {   
   return (
     <div className="app-wrapper">
       <Header/>    
       <div className='app__lower'>
-        <Nav state={props.store.getState().sideNav}/>        
+        <StoreContext.Consumer>{
+          (store)=>{return (<Nav state={store.getState().sideNav}/>)}
+        }</StoreContext.Consumer>
+                
         <div className='main'>
           <Route  path='/profile' 
                   render={ () => <Profile store = { props.store }/> }/>
