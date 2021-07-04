@@ -15,25 +15,27 @@ export const updateNewPostTextActionCreator = (text) =>
         ({ type: UPDATE_NEW_POST_TEXT, newText: text });
 
 const profileReducer = (state = initialState, action) =>{
-    switch (action.type) {
-        case ADD_POST:{
 
-          // To work properly with connect() state should remain immutable
-            let stateCopy = {...state};
-            stateCopy.postData = [...state.postData];
+    // To work properly with connect() state should remain immutable   
+
+    switch (action.type) {
+        case ADD_POST:{                        
             let newPost = {
                 link: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
-                text: stateCopy.newPostText,
+                text: state.newPostText,
                 color: '#308816'
             };
-            stateCopy.postData.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+              ...state,
+              postData: [...state.postData, newPost],
+              newPostText: ''
+            }
         }
         case UPDATE_NEW_POST_TEXT:{
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+              ...state,
+              newPostText: action.newText
+            }
         }
         default:
             return state;

@@ -24,6 +24,8 @@ ReactDOM.render(
 );
 
 
+// Subscription removed for redux/react-redux to work correctly.
+// Before it rendered two times with two different results
 
 // let rerenderEntireTree = (store) => {
 //   ReactDOM.render(
