@@ -7,27 +7,41 @@ import App from './App';
 
 import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
-import StoreContext from './storeContext';
+
+import { Provider } from 'react-redux';
 
 
 
-let rerenderEntireTree = (store) => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <StoreContext.Provider value = {store}>
-          <App/>
-        </StoreContext.Provider>
-      </BrowserRouter>      
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store = {store}>
+        <App/>
+      </Provider>
+    </BrowserRouter>      
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-rerenderEntireTree( store );
-store.subscribe( () => {
-  rerenderEntireTree(store);
-} );
+
+
+// let rerenderEntireTree = (store) => {
+//   ReactDOM.render(
+//     <React.StrictMode>
+//       <BrowserRouter>
+//         <Provider store = {store}>
+//           <App/>
+//         </Provider>
+//       </BrowserRouter>      
+//     </React.StrictMode>,
+//     document.getElementById('root')
+//   );
+// }
+
+// rerenderEntireTree( store );
+// store.subscribe( () => {
+//   rerenderEntireTree(store);
+// } );
 
 
 

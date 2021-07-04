@@ -12,9 +12,10 @@ function App(props) {
     <div className="app-wrapper">
       <Header/>    
       <div className='app__lower'>
-        <StoreContext.Consumer>{
+        {/* <StoreContext.Consumer>{
           (store)=>{return (<Nav state={store.getState().sideNav}/>)}
-        }</StoreContext.Consumer>
+        }</StoreContext.Consumer> */}
+        <Nav/>
                 
         <div className='main'>
           <Route  path='/profile' 

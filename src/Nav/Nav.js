@@ -10,7 +10,7 @@ function Nav(props) {
             <div className={s.item}><NavLink to='/profile' activeClassName={s.active}>Video</NavLink></div>
             <div className={s.item}><NavLink to='/profile' activeClassName={s.active}>Audio</NavLink></div>
             <div className={s.item}><NavLink to='/profile' activeClassName={s.active}>Settings</NavLink></div>
-            <Friends friendsData={props.state.friendsData}/>                  
+            {/* <Friends friendsData={props.state.friendsData}/>                   */}
         </nav>
     );
 }

@@ -29,23 +29,30 @@ export const updateNewMessageBodyCreator = (text) =>
 
 const dialogsReducer = (state = initialState, action) =>{ 
     switch (action.type) {
-        case SEND_MESSAGE:
-            let messageId = state.messageData.lenght + 1;
+        case SEND_MESSAGE:{
+
+            // To work properly with connect() state should remain immutable.
+
+            let stateCopy = {...state};
+            stateCopy.messageData = [...state.messageData];
+            stateCopy.newMessageBody = [...state.newMessageBody];
+            let messageId = stateCopy.messageData.length + 1;
             let newMessage = {
                 id: messageId,
-                message: state.newMessageBody
+                message: stateCopy.newMessageBody
             };
-            state.messageData.push(newMessage);
-            state.newMessageBody = '';
-            return state;
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.newMessage;
-            return state;
+            stateCopy.messageData.push(newMessage);
+            stateCopy.newMessageBody = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_MESSAGE_BODY:{
+            let stateCopy = {...state};
+            stateCopy.newMessageBody = action.newMessage;
+            return stateCopy;
+        }
         default:
             return state;
-
-    }   
-        
+    }       
 }
 
 export default dialogsReducer;
