@@ -1,6 +1,6 @@
 .app-wrapper {
   margin: auto;
-  max-width: 400px;
+  max-width: 800;
 }
 
 .app__lower {
@@ -9,7 +9,7 @@
 
 .main{
   flex-grow: 1;
-  flex-basis: 350px;
+  flex-basis: 800;
   display: flex;
   /* flex-direction: column; */
   align-items: center;

@@ -6,6 +6,10 @@ import Profile from './Profile/Profile';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
 import StoreContext from './storeContext';
+import Users from './Users/Users';
+import UsersContainer from './Users/UsersContainer';
+
+
 
 function App(props) {   
   return (
@@ -15,13 +19,14 @@ function App(props) {
         {/* <StoreContext.Consumer>{
           (store)=>{return (<Nav state={store.getState().sideNav}/>)}
         }</StoreContext.Consumer> */}
-        <Nav/>
-                
+        <Nav/>              
         <div className='main'>
           <Route  path='/profile' 
-                  render={ () => <Profile store = { props.store }/> }/>
+                  render={ () => <Profile/> }/>
           <Route  path='/dialogs' 
-                  render={ () => <DialogsContainer store = {props.store}/> }/>
+                  render={ () => <DialogsContainer/> }/>
+          <Route  path = '/users'
+                  render = {() => <UsersContainer/>}/>
         </div>
       </div>
     </div>   
