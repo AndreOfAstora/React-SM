@@ -13,13 +13,14 @@ import { Provider } from 'react-redux';
 
 
 ReactDOM.render(
-  <React.StrictMode>
+//   <React.StrictMode>  //With strict mode App rendered twice
     <BrowserRouter>
       <Provider store = {store}>
         <App/>
       </Provider>
     </BrowserRouter>      
-  </React.StrictMode>,
+//   </React.StrictMode>
+  ,
   document.getElementById('root')
 );
 
