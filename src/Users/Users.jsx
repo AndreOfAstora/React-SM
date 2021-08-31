@@ -57,26 +57,30 @@ const Users = (props) => {
     //     }
     // ];
 
-    if (props.users.length === 0){ //Fetch users and add them to state
+    // Cosmetic removal of side effect
+    let getUsers = () => {
+        if (props.users.length === 0){ //Fetch users and add them to state. HTTP request is a side effect.
         
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then(response => props.setUsers(response.data.items));
-        // props.setUsers(users);
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => props.setUsers(response.data.items));
+            // props.setUsers(users);
+        }
     }
-    debugger;
+    
     return (
         <div >
+            <button onClick = {getUsers}>Get Users</button>
             {props.users.map((u) => 
-                <Item   id={u.id}
-                        name={u.name}  //Было fullName на фронте, в API это поле зоветься name
+                <Item   id = {u.id}
+                        name = {u.name}  //Было fullName на фронте, в API это поле зоветься name
                                        //либо меняем имя на фронте, либо делаем Data Access Layer
-                        followed={u.followed}
-                        location={"u.location"}   //В API поля location нет, зовем воображаемых бэкендщиков чтоб 
+                        followed = {u.followed}
+                        location = {"u.location"}   //В API поля location нет, зовем воображаемых бэкендщиков чтоб 
                                                   //добавили, удаляем или все обращения берем в кавычки
-                        status={u.status}
-                        followUser={props.followUser}
-                        unfollowUser={props.unfollowUser}
-                        photos={u.photos} //photoUrl в API называется photos
+                        status = {u.status}
+                        followUser = {props.followUser}
+                        unfollowUser = {props.unfollowUser}
+                        photos = {u.photos} //photoUrl в API называется photos
             />)}
         </div>
     )
