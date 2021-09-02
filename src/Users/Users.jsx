@@ -11,46 +11,43 @@ import Item from "./Item/UsersItem";
 
 class Users extends React.Component {
     
-    // Cosmetic removal of side effect
+    //  Так выглядит конструктор по умолчанию(можно было и не писать его, просто чтоб знать, что он бывает)
     constructor(props) {
-        super(props);
-        // Fetch users and add them to state. HTTP request is a side effect.
-        this.confirmLoad = window.confirm("Load users via constructor ")
-        if (this.confirmLoad){
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => props.setUsers(response.data.items)); //Пропсы доступны в конструкторе
-        }
+        super(props); // Пропсы доступны в конструкторе
 
+                      // Во всех остальных местах компоненты
+                      // к пропсам нужно обращятся на this.props,
+                      // так как пропсы -- часть объекта генерируемого классом. 
     }
-    getUsers = () => {
-        if (this.props.users.length === 0){  //Fetch users and add them to state. HTTP request is a side effect.
-        
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => this.props.setUsers(response.data.items));  // Пропсы теперь чать объекта, 
-                                                                          // генерируемого классом
-            // props.setUsers(users);
-        }
+
+    // The Chad way of dealing with side effects
+    // Fetch users after component mounts.
+    // HTTP request is a side effect.
+
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        .then(response => this.props.setUsers(response.data.items));
+
+        // Interactions with DOM, running side effects, scheduling updates should be done here.
     }
+
+    
        
     render () {
         return (
-            <div >
-                {(this.confirmLoad) // Если юзеры загрузились в конструкторе, кнопку не показывать
-                    ? null 
-                    : <button onClick = {this.getUsers}>Get Users</button>} {/* getUsers теперь метод, часть объекта */}
-                {this.props.users.map((u) =>       // Пропсы теперь чаcть объекта, 
-                                                   // генерируемого классом
+            <div >               
+                {this.props.users.map((u) =>       
+
                     <Item   id = {u.id}
-                            name = {u.name}        // Было fullName на фронте, в API это поле зоветься name
-                                                   // либо меняем имя на фронте, либо делаем Data Access Layer
+                            name = {u.name}  // Если свойство в API называеться по другому,
+                                             // либо меняем имя на фронте, либо делаем Data Access Layer (не сейчас)
+                                             // Если свойства в АПИ нет, просим бэкэндщиков добавить, удаляем его или как-то помечаем (например берем все его вызовы в кавычки), чтоб исправить потом 
                             followed = {u.followed}
-                            location = {"u.location"} // В API поля location нет, зовем воображаемых бэкендщиков 
-                                                      // чтоб добавили, удаляем или все обращения берем в кавычки
-                                                      // чтоб потом с ними разобраться
+                            location = {"u.location"} 
                             status = {u.status}
                             followUser = {this.props.followUser}
                             unfollowUser = {this.props.unfollowUser}
-                            photos = {u.photos}     // photoUrl в API называется photos
+                            photos = {u.photos}     
                 />)}
             </div>
         )
