@@ -1,8 +1,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
-
-
+const SET_TOTAL_USERS_NUMBER = 'SET_TOTAL_USERS_NUMBER';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 let initialState = {
     users:[
@@ -12,7 +12,11 @@ let initialState = {
         //   fullName: 'Nikolas', followed: true,  status:'Digital minimalist nomad.', location: {country:'Ukraine',city:'Kiev'} },
         // { id: 3, photoUrl: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
         //   fullName: 'Victor',  followed: false, status:'28lvl CNC machinist.', location: {country:'Russia',city:'Rostov'} }
-    ]
+    ],
+    pageSize: 5,
+    totalUsersNumber: 50,
+    currentPage: 1
+    
 }
 
 
@@ -45,11 +49,30 @@ const usersReducer = (state = initialState, action) =>{
             }
         }
         case SET_USERS: {
+            // return {
+            //     ...state,
+            //     users: [...state.users, ...action.users]
+            // }
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
             }
         }
+
+        case SET_TOTAL_USERS_NUMBER: {
+            return {
+                ...state,
+                totalUsersNumber: action.totalUsersNumber
+            }
+        }
+
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        }
+
         default:
             return state;
     }
@@ -63,7 +86,13 @@ export const followAC = (userId) => {
 export const unfollowAC = (userId) => {
     return({ type: UNFOLLOW, userId });
 }
-export const setUsersAC = (users) =>({type:SET_USERS, users})
+export const setUsersAC = (users) => ({type: SET_USERS, users})
+
+export const setTotalUsersNumberAC = (totalUsersNumber) => ({type: SET_TOTAL_USERS_NUMBER, totalUsersNumber})
+
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 
 
 export default usersReducer;
+
+

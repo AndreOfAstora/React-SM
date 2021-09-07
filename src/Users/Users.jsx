@@ -1,13 +1,14 @@
 import * as axios from "axios";
 import React from "react";
 import Item from "./Item/UsersItem";
+import PageIndicator from "./PageIndicator/PageIndicator";
 
 
 
 // В классе есть методы, один из которых конструктор который присваивает полям значения.
 
 // В классовой компоненте реакта обязательным являеться только метод render(). 
-
+const API = 'https://social-network.samuraijs.com/api/1.0';
 
 class Users extends React.Component {
     
@@ -24,18 +25,82 @@ class Users extends React.Component {
     // Fetch users after component mounts.
     // HTTP request is a side effect.
 
-    componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then(response => this.props.setUsers(response.data.items));
+   
+
+    componentDidMount() {  //Mispronunciation of any lifecycle method name wil result in a bug
+        axios.get(this.composeRequest(this.props.currentPage))
+            .then(response =>{ 
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersNumber(response.data.totalCount);
+
+            });
+
+        window.testSetTPN = (n) => {
+            this.props.setTotalPageNumber(n);
+            console.log(window.store.getState().usersPage.totalPageNumber === n, ' ', n)
+            return null
+        }
+
+        window.testSetPI = (n) => {
+            this.props.setPageIndex(n);
+            console.log(window.store.getState().usersPage.pageIndex === n, ' ', n)
+            return null
+        }
 
         // Interactions with DOM, running side effects, scheduling updates should be done here.
     }
 
+    openPage(pageIndex) { 
+        this.composeRequest(pageIndex);
+        axios.get(this.composeRequest(pageIndex))
+            .then(response =>{ 
+                this.props.setUsers(response.data.items);
+            });
+        this.props.setCurrentPage(pageIndex);      
+    }
+
+    composeRequest(pageIndex){
+        return(API+'/users'+'?'+'page='+parseInt(pageIndex)+'&'+'count='+parseInt(this.props.pageSize))
+        
+    }
+
+    getIndicators(){
+        let indicators = [];
+        for (let i = 1; i<=this.props.totalPageNumber; i++){
+            indicators = [
+                ...indicators, 
+                <PageIndicator 
+                    openPage = {this.openPage.bind(this)} 
+                    number = {i} 
+                    active = {(i===this.props.pageIndex) ? true : false}/>
+            ];
+        }
+        return indicators
+    }
     
        
     render () {
+        let pagesCount = Math.ceil(this.props.totalUsersNumber/this.props.pageSize);
+
+        let pages = []; // And element of this array gets trapped inside a closure,
+                        // it is the only reason why routing works.
+                        // The first time, when closure was used intentionaly.
+
+        for (let i = 1; i<=pagesCount; i++){
+            pages.push(i);
+        }
+
         return (
-            <div >               
+            <div > 
+                <div style = {{maxWidth:'800px', maxHeight:'80px', wordBreak: 'break-word', overflow:'scroll'}}>
+                    {pages.map(p => <PageIndicator 
+                        openPage = {() => this.openPage(p)} // Arrow function preserves this,
+                                                            // and array element p gets trapped inside the closure,
+                                                            //when props.openPage is called inside PageIndicator component. 
+                        number = {p}                        
+                        active = {(p === this.props.currentPage) ? true : false}/>)}
+                </div>              
+                
                 {this.props.users.map((u) =>       
 
                     <Item   id = {u.id}
