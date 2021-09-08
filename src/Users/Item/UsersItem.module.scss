@@ -1,0 +1,28 @@
+.container {
+    background-color: hotpink;
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    background-color: blueviolet;
+
+    & .user_left {
+        & .user_icon {
+            display: block;
+            max-height: 70px
+        }
+
+        & .follow_btn {
+           font-weight: normal; 
+        }
+    }
+        
+
+    & .caption {
+        display: inline;
+    }
+
+    & .location {
+        display: inline;        
+    }
+
+}

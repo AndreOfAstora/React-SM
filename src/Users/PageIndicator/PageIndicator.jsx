@@ -1,3 +1,4 @@
+import styles from './PageIndicator.module.scss';
 
 const PageIndicator = (props) => {
 
@@ -9,10 +10,8 @@ const PageIndicator = (props) => {
 
     return (
     <span onClick = {openPage} 
-          style = { {cursor: 'pointer', 
-                     marginRight: '7px', 
-                     padding: '3px',
-                     fontWeight: (props.active === true) ? 'bold' : 'normal'}}
+          className = {`${styles.container} \
+                        ${(props.active === true) ? styles.active : null}`}
     
     >{` ${props.number} `}</span>)
 }

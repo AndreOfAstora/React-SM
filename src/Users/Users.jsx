@@ -2,6 +2,7 @@ import * as axios from "axios";
 import React from "react";
 import Item from "./Item/UsersItem";
 import PageIndicator from "./PageIndicator/PageIndicator";
+import styles from './Users.module.scss';
 
 
 
@@ -9,6 +10,9 @@ import PageIndicator from "./PageIndicator/PageIndicator";
 
 // В классовой компоненте реакта обязательным являеться только метод render(). 
 const API = 'https://social-network.samuraijs.com/api/1.0';
+
+console.log(styles);
+
 
 class Users extends React.Component {
     
@@ -91,8 +95,8 @@ class Users extends React.Component {
         }
 
         return (
-            <div > 
-                <div style = {{maxWidth:'800px', maxHeight:'80px', wordBreak: 'break-word', overflow:'scroll'}}>
+            <div className = {styles.container}> 
+                <div className = {styles.page_indicators}>
                     {pages.map(p => <PageIndicator 
                         openPage = {() => this.openPage(p)} // Arrow function preserves this,
                                                             // and array element p gets trapped inside the closure,
