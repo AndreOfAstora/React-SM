@@ -20,7 +20,7 @@ function Dialogs (props) {
     
     return (
 
-        <div className={s.dialogs}>
+        <div className={s.container}>
             <DialogsList dialogsData = {props.dialogsData}/>            
             <div className={s.dialogs_messages}>
                 <MessageList messageData = {props.messageData}/>

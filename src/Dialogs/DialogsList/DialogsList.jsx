@@ -2,8 +2,7 @@
 import DialogItem from './DialogItem/DialogItem';
 import styles from './DialogsList.scss';
 
-const DialogsList = (props) => {
-        debugger;
+const DialogsList = (props) => {        
         return (
             <div className = { styles.container }>                
                 {props.dialogsData

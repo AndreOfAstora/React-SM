@@ -1,11 +1,12 @@
-
+import styles from './MessageItem.module.scss';
 
 const MessageItem =  (props) => {
+    
     return (
-      <div >
+      <div className = {styles.container}>
         {props.message}
         <br/>
-        <br/>  
+        <br/> 
       </div>
     );
 }

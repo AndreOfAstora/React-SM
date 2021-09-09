@@ -1,4 +1,4 @@
-.dialogs {
+.container {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -12,7 +12,6 @@
   }
 
   &_messages {
-    padding-left: 15px;
-    flex-grow: 3;
+    padding-left: 15px;    
   }
 }
