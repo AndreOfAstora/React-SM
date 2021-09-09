@@ -2,6 +2,8 @@ import userIcon from '../../assets/Images/userIcon.png';
 
 import styles from './UsersItem.module.scss';
 
+
+
 const UsersItem = (props) => {
 
     const cFollow = () => {

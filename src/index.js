@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
-
+// Warning: when adding new componnents restart the server
 
 ReactDOM.render(
 //  <React.StrictMode>  //With strict mode App rendered twice

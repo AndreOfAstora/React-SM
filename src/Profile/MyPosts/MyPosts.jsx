@@ -7,7 +7,7 @@ import Post from './Post/Post';
 function MyPosts(props) {  
 
   
-  let postDom = props.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
+  let postJSX = props.postData.map(post => <Post link={post.link} text={post.text} color={post.color}/>);
 
 
 
@@ -39,7 +39,7 @@ function MyPosts(props) {
       <button onClick={ addPost }>
         Add post
       </button>      
-      {postDom}
+      {postJSX}
       {/* <Post link={postData[0].link} text={postData[0].text} color={postData[0].color}/>
       <Post link={postData[1].link} text={postData[1].text} color={postData[1].color}/>       */}
     </div>

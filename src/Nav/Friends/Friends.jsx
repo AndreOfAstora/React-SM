@@ -3,13 +3,13 @@ import s from './Friends.module.scss';
 
 function Friends (props) {
 
- let friendsDom = props.friendsData.map( f => <Friend name={f.name}/>);
+ let friendsJSX = props.friendsData.map( f => <Friend name={f.name}/>);
 
  return(
   <div className={s.container}>
    <p className={s.caption}>Friends</p>
    <div className={s.items}>
-    {friendsDom}
+    {friendsJSX}
    </div>
   </div>
  )

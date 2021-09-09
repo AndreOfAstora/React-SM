@@ -2,12 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../redux/dialogsReducer';
 import s from './Dialogs.module.scss';
-
-function DialogItem (props) {
- return (
-  <div className={s.dialog}><NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink></div>
- );
-}
+import DialogsWrapper from './DialogsWrapper/DialogsWrapper';
 
 function Message (props) {
   return (
@@ -22,10 +17,7 @@ function Message (props) {
 function Dialogs (props) {
 
 
-  let dialogsDom = props.dialogsData
-    .map ( dialog => <DialogItem id={dialog.id} name={dialog.name}/>);
-
-  let messageDom = props.messageData
+  let messageJSX = props.messageData
     .map ( msg => <Message message={msg.message}/>);
       
 
@@ -38,20 +30,19 @@ function Dialogs (props) {
     let text = e.target.value;
     props.updateNewMessageBody(text);
   }
+    
+    return (
 
-  return (
-    <div className={s.dialogs}>
-      <div className={s.dialogs_items}>
-        {dialogsDom}        
-      </div>
-      <div className={s.dialogs_messages}>
-        {messageDom}             
-        <textarea onChange={ onMessageChange }
-                  value={ props.newMessageBody }/>
-        <button onClick={send}>Send</button>
-      </div>      
-    </div>   
-  );
+        <div className={s.dialogs}>
+            <DialogsWrapper dialogsData = {props.dialogsData}/>            
+            <div className={s.dialogs_messages}>
+                {messageJSX}
+                <textarea onChange = {onMessageChange}
+                    value = {props.newMessageBody} />
+                <button onClick = {send}>Send</button>
+            </div>
+        </div>
+    );
 }
 
 export default Dialogs;
