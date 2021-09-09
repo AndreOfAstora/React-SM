@@ -2,28 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../redux/dialogsReducer';
 import s from './Dialogs.module.scss';
-import DialogsWrapper from './DialogsWrapper/DialogsWrapper';
-
-function Message (props) {
-  return (
-    <div className={s.message}>
-      {props.message}
-      <br/>
-      <br/>
-    </div>
-  );
-}
+import DialogsList from './DialogsList/DialogsList';
+import MessageList from './MessageList/MessageList';
 
 function Dialogs (props) {
-
-
-  let messageJSX = props.messageData
-    .map ( msg => <Message message={msg.message}/>);
-      
+    
+//   TODO: 1)Remove unused styles; 2) Move textarea and buttons into separate componnents
 
   let send = () => {
     props.sendMessage();
-
   }
 
   let onMessageChange = (e) => {
@@ -34,9 +21,10 @@ function Dialogs (props) {
     return (
 
         <div className={s.dialogs}>
-            <DialogsWrapper dialogsData = {props.dialogsData}/>            
+            <DialogsList dialogsData = {props.dialogsData}/>            
             <div className={s.dialogs_messages}>
-                {messageJSX}
+                <MessageList messageData = {props.messageData}/>
+                {/* {messageJSX} */}
                 <textarea onChange = {onMessageChange}
                     value = {props.newMessageBody} />
                 <button onClick = {send}>Send</button>

@@ -1,8 +1,8 @@
 
 import DialogItem from './DialogItem/DialogItem';
-import styles from './DialogsWrapper.scss';
+import styles from './DialogsList.scss';
 
-const DialogsWrapper = (props) => {
+const DialogsList = (props) => {
         debugger;
         return (
             <div className = { styles.container }>                
@@ -14,4 +14,4 @@ const DialogsWrapper = (props) => {
         )
 }
 
-export default DialogsWrapper;
+export default DialogsList;
