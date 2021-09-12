@@ -22,7 +22,7 @@ function Dialogs (props) {
 
         <div className={s.container}>
             <DialogsList dialogsData = {props.dialogsData}/>            
-            <div className={s.dialogs_messages}>
+            <div className={s.container_messages}>
                 <MessageList messageData = {props.messageData}/>
                 {/* {messageJSX} */}
                 <textarea onChange = {onMessageChange}

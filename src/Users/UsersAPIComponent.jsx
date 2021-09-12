@@ -19,7 +19,7 @@ const API = 'https://social-network.samuraijs.com/api/1.0';
 console.log(styles);
 
 
-class Users extends React.Component {
+class UsersAPIComponent extends React.Component {
     
     //  Так выглядит конструктор по умолчанию(можно было и не писать его, просто чтоб знать, что он бывает)
     constructor(props) {
@@ -131,4 +131,4 @@ class Users extends React.Component {
     
 }
 
-export default Users;
+export default UsersAPIComponent;
