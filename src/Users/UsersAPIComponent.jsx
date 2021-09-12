@@ -2,13 +2,13 @@ import * as axios from "axios";
 import React from "react";
 import Item from "./Item/UsersItem";
 import PageIndicator from "./PageIndicator/PageIndicator";
+import Users from "./Users";
 import styles from './Users.module.scss';
 
-// TODO: 
-// 1) Сделать вывод небольшого числа индикаторов страниц.
-// 2) Объеденить метод composeRequest и отправку генерируемого им запроса в один метод, с возможностью забросить коллбэк, выполняемый после отправки запроса (могут понадобиться промисы). 
-// 3) Объеденить вывод индикаторов страниц в PageIndicatorList.jsx. 
-// 4) Оюъеденить вывод пользователей в UsersList.jsx.
+// TODO:
+// 1) Объеденить метод composeRequest и отправку генерируемого им запроса в один метод, с возможностью забросить коллбэк, выполняемый после отправки запроса (могут понадобиться промисы). 
+// 2) bind в конструкторе.
+
 
 
 // В классе есть методы, один из которых конструктор который присваивает полям значения.
@@ -24,6 +24,8 @@ class UsersAPIComponent extends React.Component {
     //  Так выглядит конструктор по умолчанию(можно было и не писать его, просто чтоб знать, что он бывает)
     constructor(props) {
         super(props); // Пропсы доступны в конструкторе
+
+        this.openPage = this.openPage.bind(this);
 
                       // Во всех остальных местах компоненты
                       // к пропсам нужно обращятся на this.props,
@@ -46,18 +48,6 @@ class UsersAPIComponent extends React.Component {
 
             });
 
-        window.testSetTPN = (n) => {
-            this.props.setTotalPageNumber(n);
-            console.log(window.store.getState().usersPage.totalPageNumber === n, ' ', n)
-            return null
-        }
-
-        window.testSetPI = (n) => {
-            this.props.setPageIndex(n);
-            console.log(window.store.getState().usersPage.pageIndex === n, ' ', n)
-            return null
-        }
-
         // Interactions with DOM, running side effects, scheduling updates should be done here.
     }
 
@@ -75,21 +65,6 @@ class UsersAPIComponent extends React.Component {
         
     }
 
-    getIndicators(){
-        let indicators = [];
-        for (let i = 1; i<=this.props.totalPageNumber; i++){
-            indicators = [
-                ...indicators, 
-                <PageIndicator 
-                    openPage = {this.openPage.bind(this)} 
-                    number = {i} 
-                    active = {(i===this.props.pageIndex) ? true : false}/>
-            ];
-        }
-        return indicators
-    }
-    
-       
     render () {
         let pagesCount = Math.ceil(this.props.totalUsersNumber/this.props.pageSize);
 
@@ -102,7 +77,22 @@ class UsersAPIComponent extends React.Component {
         }
 
         return (
-            <div className = {styles.container}> 
+            <div className = {styles.container}>
+                <Users  openPage = { this.openPage }
+                        totalUsersNumber = {this.props.totalUsersNumber}
+                        pageSize = {this.props.pageSize}
+                        currentPage = {this.props.currentPage}
+                        users = {this.props.users}
+                        followUser = {this.props.followUser}
+                        unfollowUser = {this.props.unfollowUser}/> 
+
+
+
+
+
+
+
+
                 <div className = {styles.page_indicators}>
                     {pages.map(p => <PageIndicator 
                         openPage = {() => this.openPage(p)} // Arrow function preserves this,

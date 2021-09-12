@@ -3,7 +3,6 @@ import styles from './PageIndicator.module.scss';
 const PageIndicator = (props) => {
 
     let openPage = () => {
-        debugger;
         props.openPage(props.number);
 
     }
@@ -16,4 +15,4 @@ const PageIndicator = (props) => {
     >{` ${props.number} `}</span>)
 }
 
-export default PageIndicator
+export default PageIndicator;
