@@ -4,6 +4,7 @@ import { sendMessageCreator, updateNewMessageBodyCreator } from '../redux/dialog
 import s from './Dialogs.module.scss';
 import DialogsList from './DialogsList/DialogsList';
 import MessageList from './MessageList/MessageList';
+import SendBtn from './SendBtn/SendBtn';
 
 function Dialogs (props) {
     
@@ -25,9 +26,10 @@ function Dialogs (props) {
             <div className={s.container_messages}>
                 <MessageList messageData = {props.messageData}/>
                 {/* {messageJSX} */}
-                <textarea onChange = {onMessageChange}
+                <textarea 
+                    onChange = {onMessageChange}
                     value = {props.newMessageBody} />
-                <button onClick = {send}>Send</button>
+                <SendBtn send = { send } />
             </div>
         </div>
     );
