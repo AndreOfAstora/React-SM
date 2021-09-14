@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../redux/dialogsReducer';
 import s from './Dialogs.module.scss';
 import DialogsList from './DialogsList/DialogsList';
+import MessageInput from './MessageInput/MessageInput';
 import MessageList from './MessageList/MessageList';
 import SendBtn from './SendBtn/SendBtn';
 
@@ -26,9 +27,9 @@ function Dialogs (props) {
             <div className={s.container_messages}>
                 <MessageList messageData = {props.messageData}/>
                 {/* {messageJSX} */}
-                <textarea 
-                    onChange = {onMessageChange}
-                    value = {props.newMessageBody} />
+                <MessageInput
+                    handleChange = { onMessageChange }
+                    value = { props.newMessageBody }/>
                 <SendBtn send = { send } />
             </div>
         </div>

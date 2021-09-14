@@ -3,14 +3,6 @@
   flex-direction: row;
   flex-grow: 1;
 
-  & button {
-    display: block;
-  }
-
-  &_items {
-    flex-grow: 1;
-  }
-
   &_messages {
     padding-left: 15px;    
   }
