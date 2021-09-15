@@ -1,7 +1,5 @@
 import * as axios from "axios";
 import React from "react";
-import Item from "./Item/UsersItem";
-import PageIndicator from "./PageIndicator/PageIndicator";
 import Users from "./Users";
 import styles from './Users.module.scss';
 
@@ -86,35 +84,7 @@ class UsersAPIComponent extends React.Component {
                         followUser = {this.props.followUser}
                         unfollowUser = {this.props.unfollowUser}/> 
 
-
-
-
-
-
-
-
-                <div className = {styles.page_indicators}>
-                    {pages.map(p => <PageIndicator 
-                        openPage = {() => this.openPage(p)} // Arrow function preserves this,
-                                                            // and array element p gets trapped inside the closure,
-                                                            //when props.openPage is called inside PageIndicator component. 
-                        number = {p}                        
-                        active = {(p === this.props.currentPage) ? true : false}/>)}
-                </div>              
                 
-                {this.props.users.map((u) =>       
-
-                    <Item   id = {u.id}
-                            name = {u.name}  // Если свойство в API называеться по другому,
-                                             // либо меняем имя на фронте, либо делаем Data Access Layer (не сейчас)
-                                             // Если свойства в АПИ нет, просим бэкэндщиков добавить, удаляем его или как-то помечаем (например берем все его вызовы в кавычки), чтоб исправить потом 
-                            followed = {u.followed}
-                            location = {"u.location"} 
-                            status = {u.status}
-                            followUser = {this.props.followUser}
-                            unfollowUser = {this.props.unfollowUser}
-                            photos = {u.photos}     
-                />)}
             </div>
         )
     }
