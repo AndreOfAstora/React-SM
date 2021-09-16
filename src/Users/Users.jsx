@@ -2,6 +2,7 @@ import React from "react";
 
 import Item from "./Item/UsersItem";
 import PageIndicator from "./PageIndicatorsList/PageIndicator/PageIndicator";
+import PageIndicatorsList from "./PageIndicatorsList/PageIndicatorsList";
 import styles from './Users.module.scss';
 
 // TODO:
@@ -14,26 +15,16 @@ import styles from './Users.module.scss';
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersNumber/props.pageSize);
 
-    let pages = []; // And element of this array gets trapped inside a closure,
-                    // it is the only reason why routing works.
-                    // The first time, when closure was used intentionaly.
-
-    for (let i = 1; i<=pagesCount; i++){
-        pages.push(i);
-    }
+    
     
     return(
-        <div className={styles.container}> 
-            <div className={styles.page_indicators}>
-                {pages.map(p => 
-                    <PageIndicator
-                        openPage={props.openPage} // Arrow function preserves this, and array element p gets 
-                                                  // trapped inside the closure, when props.openPage is called 
-                                                  // inside PageIndicator component. 
-                                                  // UPD: ignore the above, page indicator calls openPage like this: openPage(props.number), so closure is not done like it was said above.
-                                                  // TODO: Investigate necessity of passing p via arrow function into openPage.
-                        number={p}
-                        active={(p === props.currentPage) ? true : false} />)}
+        <div className = { styles.container }> 
+            <div className = { styles.page_indicators }>
+                <PageIndicatorsList 
+                    openPage = { props.openPage }
+                    pagesCount = { pagesCount }
+                    currentPage = { props.currentPage }
+                />                
             </div>
 
             {props.users.map((u) =>
