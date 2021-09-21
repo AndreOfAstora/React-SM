@@ -3,7 +3,11 @@ import styles from './PageIndicator.module.scss';
 const PageIndicator = (props) => {
 
     let openPage = () => {
-        props.openPage(props.number);
+        if (props.number != 0){
+            props.openPage(props.number);
+        } else {
+            console.log('error');
+        }
 
     }
 
