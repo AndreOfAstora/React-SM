@@ -61,7 +61,11 @@ const PageIndicatorsList = (props) => {
                                                   // trapped inside the closure, when props.openPage is called 
                                                   // inside PageIndicator component. 
                                                   // UPD: ignore the above, page indicator calls openPage like this: openPage(props.number), so closure is not done like it was said above.
-                                                  // TODO: Investigate necessity of passing p via arrow function into openPage.
+
+                                                  //   UPD: scince PageIndicator is separate component, p
+                                                  // is saved in it's props.number and then passed into openPage, probably closure occures, but i'm not sure;
+                                                  // if it was a plain jsx, arrow function and closure would
+                                                  // be necessary
                         number={p}
                         active={(p === props.currentPage) ? true : false} />)}
         </div>

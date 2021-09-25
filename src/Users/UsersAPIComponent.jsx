@@ -23,7 +23,8 @@ class UsersAPIComponent extends React.Component {
     constructor(props) {
         super(props); // Пропсы доступны в конструкторе
 
-        this.openPage = this.openPage.bind(this);
+        this.openPage = this.openPage.bind(this); // binding in constructor is superrior to arrow methods
+                                                  // this should remain the same even if you pass this thing in via arrow function
 
                       // Во всех остальных местах компоненты
                       // к пропсам нужно обращятся на this.props,

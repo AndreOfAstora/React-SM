@@ -7,9 +7,7 @@ import styles from './Users.module.scss';
 
 // TODO:
 // 1) Сделать вывод небольшого числа индикаторов страниц.
-// 2) Объеденить вывод индикаторов страниц в PageIndicatorList.jsx. 
-// 3) Оюъеденить вывод пользователей в UsersList.jsx.
-// 4) См. строчку 33.
+// 2) Оюъеденить вывод пользователей в UsersList.jsx.
 
 
 const Users = (props) => {
