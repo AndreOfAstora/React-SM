@@ -10,7 +10,7 @@ const PageIndicatorsList = (props) => {
     // TODO: refactor setPagesRange
 
     const setPagesRange = () => {
-        debugger;
+
         if (props.currentPage <= range - 1) {
             for (let i = 1; i<=range; i++){
                 pages.push(i);
@@ -20,7 +20,7 @@ const PageIndicatorsList = (props) => {
             pages.push(props.pagesCount);
 
         } else if ( (props.pagesCount - range/2 > props.currentPage) && (props.currentPage > range/2) ){
-            debugger;
+            
             pages.push(1);
             pages.push(0);
 

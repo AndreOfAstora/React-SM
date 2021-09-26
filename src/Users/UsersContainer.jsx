@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { followAC, setCurrentPageAC, setTotalUsersNumberAC, setUsersAC, unfollowAC } from "../redux/usersReducer";
+import { followAC, setCurrentPageAC, setIsLoadingFalse, setIsLoadingTrue, setTotalUsersNumberAC, setUsersAC, unfollowAC } from "../redux/usersReducer";
 import UsersAPIComponent from "./UsersAPIComponent";
 
 
@@ -8,10 +8,12 @@ let mapStateToProps = (state) => {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersNumber: state.usersPage.totalUsersNumber,
-    currentPage: state.usersPage.currentPage
+    currentPage: state.usersPage.currentPage,
+    isLoading: state.usersPage.isLoading
   }
 
 }
+
 
 let mapDispatchToProps = (dispatch) => {
   return {
@@ -19,9 +21,9 @@ let mapDispatchToProps = (dispatch) => {
     unfollowUser: (userId) => dispatch(unfollowAC(userId)),
     setUsers: (users) => dispatch(setUsersAC(users)),
     setTotalUsersNumber: (totalUsersNumber) => dispatch(setTotalUsersNumberAC(totalUsersNumber)),
-    setCurrentPage: (currentPage) => dispatch(setCurrentPageAC(currentPage))
-
-    
+    setCurrentPage: (currentPage) => dispatch(setCurrentPageAC(currentPage)),
+    setIsLoadingTrue: () => dispatch (setIsLoadingTrue()),
+    setIsLoadingFalse: () => dispatch (setIsLoadingFalse())    
   }
 
 }

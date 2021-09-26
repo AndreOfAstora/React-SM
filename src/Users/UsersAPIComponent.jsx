@@ -83,7 +83,12 @@ class UsersAPIComponent extends React.Component {
                         currentPage = {this.props.currentPage}
                         users = {this.props.users}
                         followUser = {this.props.followUser}
-                        unfollowUser = {this.props.unfollowUser}/> 
+                        unfollowUser = {this.props.unfollowUser}
+
+                        isLoading = {this.props.isLoading}
+                        setIsLoadingTrue = {this.props.setIsLoadingTrue}
+                        setIsLoadingFalse = {this.props.setIsLoadingFalse}
+                /> 
 
                 
             </div>
