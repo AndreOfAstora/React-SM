@@ -16,27 +16,12 @@ const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersNumber/props.pageSize);
 
 
-    let toggleIsLoading = () => {
-        // if  isloading  fallse, set isloading true
-        // else if isloading true, set isloading fallse
-    
-        if (props.isLoading === true) {
-            props.setIsLoadingFalse();
-        } else if (props.isLoading === false) {
-            props.setIsLoadingTrue();
-        }
-    }
     
     
+
     return(
         <div className = { styles.container }>
-            <div>
-                {
-                    (props.isLoading) ? 'Loading...' : 'Loaded'
-                }
-
-                <button onClick = {toggleIsLoading}>value= 'toggle'</button>
-            </div> 
+            
             <div className = { styles.page_indicators }>
                 <PageIndicatorsList 
                     openPage = { props.openPage }

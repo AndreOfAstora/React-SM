@@ -38,12 +38,14 @@ class UsersAPIComponent extends React.Component {
    
 
     componentDidMount() {  //Mispronunciation of any lifecycle method name wil result in a bug
+        this.props.setIsLoadingTrue();
         axios.get(
                 this.composeRequest(this.props.currentPage)
             )
             .then(response =>{ 
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersNumber(response.data.totalCount);
+                this.props.setIsLoadingFalse();
 
             });
 
@@ -51,10 +53,11 @@ class UsersAPIComponent extends React.Component {
     }
 
     openPage(pageIndex) { 
-        this.composeRequest(pageIndex);
+        this.props.setIsLoadingTrue();
         axios.get(this.composeRequest(pageIndex))
             .then(response =>{ 
                 this.props.setUsers(response.data.items);
+                this.props.setIsLoadingFalse();
             });
         this.props.setCurrentPage(pageIndex);      
     }
@@ -64,19 +67,27 @@ class UsersAPIComponent extends React.Component {
         
     }
 
-    render () {
-        let pagesCount = Math.ceil(this.props.totalUsersNumber/this.props.pageSize);
 
-        let pages = []; // And element of this array gets trapped inside a closure,
-                        // it is the only reason why routing works.
-                        // The first time, when closure was used intentionaly.
-
-        for (let i = 1; i<=pagesCount; i++){
-            pages.push(i);
+    toggleIsLoading = () => {
+        // if  isloading  fallse, set isloading true
+        // else if isloading true, set isloading fallse
+    
+        if (this.props.isLoading === true) {
+            this.props.setIsLoadingFalse();
+        } else if (this.props.isLoading === false) {
+            this.props.setIsLoadingTrue();
         }
+    }
 
+    render () {
+        
         return (
             <div className = {styles.container}>
+                <div>
+                    { (this.props.isLoading) ? 'Loading...' : 'Loaded' }
+
+                    <button onClick={this.toggleIsLoading}>value= 'toggle'</button>
+                </div>
                 <Users  openPage = { this.openPage }
                         totalUsersNumber = {this.props.totalUsersNumber}
                         pageSize = {this.props.pageSize}
