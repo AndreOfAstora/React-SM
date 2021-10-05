@@ -3,8 +3,8 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_TOTAL_USERS_NUMBER = 'SET_TOTAL_USERS_NUMBER';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_IS_LOADING_TRUE = 'SET_IS_LOADING_TRUE';
-const SET_IS_LOADING_FALSE = 'SET_IS_LOADING_FALSE';
+
+const SET_IS_LOADING = 'SET_IS_LOADING';
 
 let initialState = {
     users:[
@@ -51,6 +51,9 @@ const usersReducer = (state = initialState, action) =>{
                 })
             }
         }
+
+
+
         case SET_USERS: {
             // return {
             //     ...state,
@@ -76,33 +79,26 @@ const usersReducer = (state = initialState, action) =>{
             }
         }
 
-        case SET_IS_LOADING_TRUE: {
+
+
+        case SET_IS_LOADING: {
             return {
                 ...state,
-                isLoading: true
+                isLoading: action.isLoading
             }
         }
 
-        case SET_IS_LOADING_FALSE: {
-            return {
-                ...state,
-                isLoading: false
-            }
-        }
-
+        
         default:
             return state;
     }
     
 } 
 
-export const followAC = (userId) => {
-    return({ type: FOLLOW, userId});
-}
+export const followAC = (userId) => ({ type: FOLLOW, userId})
 
-export const unfollowAC = (userId) => {
-    return({ type: UNFOLLOW, userId });
-}
+export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId })
+
 
 
 export const setUsersAC = (users) => ({type: SET_USERS, users})
@@ -113,9 +109,8 @@ export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, curre
 
 
 
-export const setIsLoadingTrue = () => ({type: SET_IS_LOADING_TRUE})
+export const setIsLoadingAC = (isLoading) => ({type: SET_IS_LOADING, isLoading})
 
-export const setIsLoadingFalse = () => ({type: SET_IS_LOADING_FALSE})
 
 
 export default usersReducer;
