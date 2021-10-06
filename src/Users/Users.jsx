@@ -13,10 +13,7 @@ import styles from './Users.module.scss';
 
 
 const Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersNumber/props.pageSize);
-
-
-    
+    let pagesCount = Math.ceil(props.totalUsersNumber/props.pageSize);   
     
 
     return(
@@ -39,8 +36,8 @@ const Users = (props) => {
                     followed={u.followed}
                     location={"u.location"}
                     status={u.status}
-                    followUser={props.followUser}
-                    unfollowUser={props.unfollowUser}
+                    follow={props.follow}
+                    unfollow={props.unfollow}
                     photos={u.photos}
                 />)}
         </div>

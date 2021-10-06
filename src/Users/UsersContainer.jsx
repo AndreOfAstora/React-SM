@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
-import { followAC, setCurrentPageAC, setIsLoadingAC, setIsLoadingFalse, setIsLoadingTrue, setTotalUsersNumberAC, setUsersAC, unfollowAC } from "../redux/usersReducer";
+import { follow, setCurrentPage, setIsLoading, setTotalUsersNumber, setUsers, unfollow } from "../redux/usersReducer";
 import UsersAPIComponent from "./UsersAPIComponent";
 
 
-// TODO: 
 
-// 1) Remove unnecessary imports
 
 
 let mapStateToProps = (state) => {
@@ -20,22 +18,18 @@ let mapStateToProps = (state) => {
 }
 
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    followUser: (userId) => dispatch(followAC(userId)),
-    unfollowUser: (userId) => dispatch(unfollowAC(userId)),
 
-    setUsers: (users) => dispatch(setUsersAC(users)),
-    setTotalUsersNumber: (totalUsersNumber) => dispatch(setTotalUsersNumberAC(totalUsersNumber)),
-    setCurrentPage: (currentPage) => dispatch(setCurrentPageAC(currentPage)),
+const UsersContainer = connect(mapStateToProps, {
     
-    setIsLoading: (isLoading) => dispatch( setIsLoadingAC(isLoading) )
-  }
+        follow,
+        unfollow,
 
-}
+        setUsers,
+        setTotalUsersNumber,
+        setCurrentPage,
+        
+        setIsLoading
 
-
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+    })(UsersAPIComponent);
 
 export default UsersContainer;

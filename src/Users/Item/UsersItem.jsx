@@ -7,11 +7,11 @@ import styles from './UsersItem.module.scss';
 const UsersItem = (props) => {
 
     const cFollow = () => {
-        props.followUser(props.id)
+        props.follow(props.id)
     }
 
     const cUnfollow = () => {
-        props.unfollowUser(props.id)
+        props.unfollow(props.id)
     }
 
     return (

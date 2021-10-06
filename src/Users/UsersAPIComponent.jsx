@@ -99,8 +99,8 @@ class UsersAPIComponent extends React.Component {
                         
                         users = {this.props.users}
 
-                        followUser = {this.props.followUser}
-                        unfollowUser = {this.props.unfollowUser}
+                        follow = {this.props.follow}
+                        unfollow = {this.props.unfollow}
                 /> 
 
                 
