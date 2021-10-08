@@ -8,6 +8,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import StoreContext from './storeContext';
 import Users from './Users/Users';
 import UsersContainer from './Users/UsersContainer';
+import ProfileAPIComponent from './Profile/ProfileAPIComponent';
 
 
 
@@ -22,7 +23,7 @@ function App(props) {
         <Nav/>              
         <div className='main'>
           <Route  path='/profile' 
-                  render={ () => <Profile/> }/>
+                  render={ () => <ProfileAPIComponent/> }/>
           <Route  path='/dialogs' 
                   render={ () => <DialogsContainer/> }/>
           <Route  path = '/users'
