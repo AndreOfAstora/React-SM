@@ -1,14 +1,14 @@
 import './App.css';
-import Header from './Header/Header';
-import Nav from './Nav/Nav';
+import Header from './components/Header/Header';
+import Nav from './components/Nav/Nav';
 import { BrowserRouter, Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileAPIComponent from './Profile/ProfileAPIComponent';
+import ProfileAPIComponent from './components/Profile/ProfileAPIComponent';
 import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
 
 
 
-function App(props) {   
+function App() {   
   return (
     <div className="app-wrapper">
       <Header/>    

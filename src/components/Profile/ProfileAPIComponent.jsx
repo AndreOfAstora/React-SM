@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
-import { setProfileInfo } from '../redux/profileReducer';
+import { setProfileInfo } from '../../redux/profileReducer';
 import Profile from './Profile';
 
 
