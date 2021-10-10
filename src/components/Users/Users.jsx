@@ -1,7 +1,6 @@
 import React from "react";
 
 import Item from "./Item/UsersItem";
-import PageIndicator from "./PageIndicatorsList/PageIndicator/PageIndicator";
 import PageIndicatorsList from "./PageIndicatorsList/PageIndicatorsList";
 import styles from './Users.module.scss';
 

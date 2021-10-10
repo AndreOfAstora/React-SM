@@ -2,7 +2,7 @@ import * as axios from "axios";
 import React from "react";
 import Users from "./Users";
 import styles from './Users.module.scss';
-import preloader from '../assets/Images/preloader.gif';
+import preloader from '../../assets/Images/preloader.gif';
 
 
 

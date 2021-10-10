@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setIsLoading, setTotalUsersNumber, setUsers, unfollow } from "../redux/usersReducer";
+import { follow, setCurrentPage, setIsLoading, setTotalUsersNumber, setUsers, unfollow } from "../../redux/usersReducer";
 import UsersAPIComponent from "./UsersAPIComponent";
 
 

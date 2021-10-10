@@ -1,14 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './Header/Header';
 import Nav from './Nav/Nav';
-import Profile from './Profile/Profile';
-import DialogsContainer from './Dialogs/DialogsContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
-import StoreContext from './storeContext';
-import Users from './Users/Users';
-import UsersContainer from './Users/UsersContainer';
+import UsersContainer from './components/Users/UsersContainer';
 import ProfileAPIComponent from './Profile/ProfileAPIComponent';
+import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
 
 
 
