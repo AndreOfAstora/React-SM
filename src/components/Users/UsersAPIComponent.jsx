@@ -2,7 +2,7 @@ import * as axios from "axios";
 import React from "react";
 import Users from "./Users";
 import styles from './Users.module.scss';
-import preloader from '../../assets/Images/preloader.gif';
+import Preloader from "../commons/Preloader/Preloader";
 
 
 
@@ -86,11 +86,9 @@ class UsersAPIComponent extends React.Component {
         
         return (
             <div className = {styles.container}>
-                <div>
-                    { (this.props.isLoading) ? <img src = {preloader}/> : null }
-
-                    {/* <button onClick={this.toggleIsLoading}>value= 'toggle'</button> */}
-                </div>
+                
+                <Preloader isLoading = { this.props.isLoading }/>
+                
                 <Users  openPage = { this.openPage }
 
                         totalUsersNumber = {this.props.totalUsersNumber}
