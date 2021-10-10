@@ -4,10 +4,12 @@
 
 //  1) Add style module
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
     return (
         <div>
-            Profile info
+            Profile info            
+            <br />
+            { 'profileInfo: ' + JSON.stringify(props.profileInfo) }
         </div>
     )
 }

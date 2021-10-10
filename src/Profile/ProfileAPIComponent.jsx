@@ -1,14 +1,17 @@
 import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux';
+import { setProfileInfo } from '../redux/profileReducer';
 import Profile from './Profile';
 
-window.response = {};
+
 
 class ProfileAPIComponent extends React.Component {
 
 
-    componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2').then(response => { window.response = {...response};
+    componentDidMount() {   
+        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2').then(response => {
+            this.props.setProfileInfo(response.data);
         });        
     }
 
@@ -16,13 +19,19 @@ class ProfileAPIComponent extends React.Component {
     render() {
         return (
             <div>
-                <Profile {...this.props}/>
+                <Profile profileInfo = { this.props.profileInfo }/>
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => ( {
+    profileInfo: state.profilePage.profileInfo
+} )
 
 
 
-export default ProfileAPIComponent;
+
+export default connect(mapStateToProps, {
+    setProfileInfo
+})(ProfileAPIComponent);
