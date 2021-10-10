@@ -4,12 +4,17 @@
 
 //  1) Add style module
 
+// 
+
 const ProfileInfo = (props) => {
     return (
-        <div>
-            Profile info            
+        <div>            
+            <img src = {props.profileInfo.photos.large}/>
             <br />
-            { 'profileInfo: ' + JSON.stringify(props.profileInfo) }
+            <p>{props.profileInfo.fullName}</p>
+            <br />
+            <p>About me:</p>
+            <p>{props.profileInfo.aboutMe}</p>            
         </div>
     )
 }
