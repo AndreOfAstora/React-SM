@@ -10,7 +10,7 @@ let initialState = {
   ],
   newPostText: '',
 
-  profileInfo: {}
+  profileInfo: null
 }
 
 

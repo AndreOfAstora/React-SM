@@ -1,4 +1,4 @@
-
+import Preloader from '../../commons/Preloader/Preloader.jsx'
 
 // TODO:
 
@@ -7,6 +7,11 @@
 // 
 
 const ProfileInfo = (props) => {
+    if (!props.profileInfo){
+        return (
+            <Preloader isLoading = {true}/>
+        )
+    }
     return (
         <div>            
             <img src = {props.profileInfo.photos.large}/>
