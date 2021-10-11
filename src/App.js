@@ -18,7 +18,7 @@ function App() {
         }</StoreContext.Consumer> */}
         <Nav/>              
         <div className='main'>
-          <Route  path='/profile' 
+          <Route  path='/profile/:userId?' 
                   render={ () => <ProfileAPIComponent/> }/>
           <Route  path='/dialogs' 
                   render={ () => <DialogsContainer/> }/>
