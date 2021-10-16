@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import store, { addPostActionCreator, updateNewPostTextActionCreator } from './redux/redux-store';
+import store from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
