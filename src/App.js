@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileAPIComponent from './components/Profile/ProfileAPIComponent';
 import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
+import TestComponent from './components/TestComponent/TestComponent';
 
 
 
@@ -20,10 +21,16 @@ function App() {
         <div className='main'>
           <Route  path='/profile/:userId?' 
                   render={ () => <ProfileAPIComponent/> }/>
+
           <Route  path='/dialogs' 
                   render={ () => <DialogsContainer/> }/>
+
           <Route  path = '/users'
                   render = {() => <UsersContainer/>}/>
+
+          <Route  path = '/test'
+                  component = {TestComponent}/>
+        
         </div>
       </div>
     </div>   
