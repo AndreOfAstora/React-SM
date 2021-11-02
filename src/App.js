@@ -5,13 +5,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileAPIComponent from './components/Profile/ProfileAPIComponent';
 import DialogsContainer from './components/Dialogs/DialogsContainer.jsx';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 
 function App() {   
   return (
     <div className="app-wrapper">
-      <Header/>    
+      <HeaderContainer/>    
       <div className='app__lower'>
         {/* <StoreContext.Consumer>{
           (store)=>{return (<Nav state={store.getState().sideNav}/>)}
