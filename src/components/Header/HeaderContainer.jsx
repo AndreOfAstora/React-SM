@@ -8,6 +8,14 @@ import Header from "./Header";
 
 // 1) Move common constants into a separate file, in this case -- API string.
 
+// 2) Switch to action creator object instead of mdtp function
+
+// 3) Add a preloader?
+
+// 4) Nest insides of Header.jsx here? Do i need it? Why? -- to have less props per componnent
+
+// 5) Fetch authed user profile info and put it into header. Fetching probably should occure inside then section of componentDidMount sideeffect promise. (see CDM() method for details)
+
 const API = 'https://social-network.samuraijs.com/api/1.0';
 
 
@@ -18,8 +26,8 @@ class HeaderContainer extends React.Component {
     componentDidMount(){
         axios.get(API+'/auth/me', { withCredentials: true })
             .then(response => {
-                debugger;
-                this.props.setData(response.data.data)
+                if (response.data.resultCode === 0)
+                    this.props.setData(response.data.data)                // TODO sec 5)
             })
     }
 
@@ -28,7 +36,8 @@ class HeaderContainer extends React.Component {
             <Header 
                 id = {this.props.id} 
                 login = {this.props.login}
-                email = {this.props.email}/>
+                email = {this.props.email}
+                isLoggedIn = {this.props.isLoggedIn}/>
         )
     }
 }
@@ -38,7 +47,8 @@ class HeaderContainer extends React.Component {
 const mapStateToProps = (state) => ({
     id: state.auth.id,
     login: state.auth.login,
-    email: state.auth.email
+    email: state.auth.email,
+    isLoggedIn: state.auth.isLoggedIn
 })
 
 const mapDispatchTOProps = (dispatch) => ({

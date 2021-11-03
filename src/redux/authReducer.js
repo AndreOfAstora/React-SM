@@ -3,7 +3,8 @@ const SET_DATA = "SET_DATA";
 let initialState = {
     id: null,
     login: null,
-    email: null
+    email: null,
+    isLoggedIn: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -11,7 +12,8 @@ const authReducer = (state = initialState, action) => {
         case SET_DATA: {
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isLoggedIn: true
             }
         }
         
