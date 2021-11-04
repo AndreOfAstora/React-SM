@@ -3,6 +3,7 @@ import React from "react";
 import Users from "./Users";
 import styles from './Users.module.scss';
 import Preloader from "../commons/Preloader/Preloader";
+import { API } from "../../utils/apiURL";
 
 
 
@@ -15,7 +16,7 @@ import Preloader from "../commons/Preloader/Preloader";
 // В классе есть методы, один из которых конструктор который присваивает полям значения.
 
 // В классовой компоненте реакта обязательным являеться только метод render(). 
-const API = 'https://social-network.samuraijs.com/api/1.0';
+
 
 console.log(styles);
 
@@ -43,7 +44,8 @@ class UsersAPIComponent extends React.Component {
     componentDidMount() {  //Mispronunciation of any lifecycle method name wil result in a bug
         this.props.setIsLoading(true);
         axios.get(
-                this.composeRequest(this.props.currentPage)
+                this.composeRequest(this.props.currentPage),
+                {withCredentials: true}
             )
             .then(response =>{ 
                 this.props.setUsers(response.data.items);
@@ -57,7 +59,10 @@ class UsersAPIComponent extends React.Component {
 
     openPage(pageIndex) { 
         this.props.setIsLoading(true);
-        axios.get(this.composeRequest(pageIndex))
+        axios.get(  
+                this.composeRequest(pageIndex), 
+                {withCredentials: true}
+            )
             .then(response =>{ 
                 this.props.setUsers(response.data.items);
                 this.props.setIsLoading(false);

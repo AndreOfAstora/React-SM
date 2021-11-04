@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { setProfileInfo } from '../../redux/profileReducer';
+import { API } from '../../utils/apiURL';
 import Profile from './Profile';
 
 
@@ -18,7 +19,7 @@ class ProfileAPIComponent extends React.Component {
             userId = 2;
         }
 
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId).then(response => {
+        axios.get(API + '/profile/' + userId).then(response => {
             this.props.setProfileInfo(response.data);
         });        
     }

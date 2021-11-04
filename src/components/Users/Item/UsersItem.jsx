@@ -1,18 +1,45 @@
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import userIcon from '../../../assets/Images/userIcon.png';
+import { API } from '../../../utils/apiURL';
+import { API_KEY } from '../../../utils/constantsAuth';
 
 import styles from './UsersItem.module.scss';
-
 
 
 const UsersItem = (props) => {
 
     const cFollow = () => {
-        props.follow(props.id)
+        axios.post(
+            API+'/follow/'+props.id,
+            {},
+            {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': API_KEY
+                }            
+            }
+        )
+        .then(response =>{
+            if (response.data.resultCode === 0)  props.follow(props.id)
+        });
     }
 
     const cUnfollow = () => {
-        props.unfollow(props.id)
+        axios.delete(
+            API+'/follow/'+props.id,            
+            {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': API_KEY
+                }
+            
+            }
+        )
+        .then(response => {
+            if (response.data.resultCode === 0)  
+            props.unfollow(props.id)
+        });
     }
 
     return (

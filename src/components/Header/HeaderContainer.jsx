@@ -2,11 +2,12 @@ import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { setData } from "../../redux/authReducer";
+import { API } from "../../utils/apiURL";
 import Header from "./Header";
 
 // TODO:
 
-// 1) Move common constants into a separate file, in this case -- API string.
+
 
 // 2) Switch to action creator object instead of mdtp function
 
@@ -16,7 +17,6 @@ import Header from "./Header";
 
 // 5) Fetch authed user profile info and put it into header. Fetching probably should occure inside then section of componentDidMount sideeffect promise. (see CDM() method for details)
 
-const API = 'https://social-network.samuraijs.com/api/1.0';
 
 
 
@@ -24,7 +24,10 @@ const API = 'https://social-network.samuraijs.com/api/1.0';
 class HeaderContainer extends React.Component {
 
     componentDidMount(){
-        axios.get(API+'/auth/me', { withCredentials: true })
+        axios.get(
+                API+'/auth/me', 
+                { withCredentials: true }
+            )
             .then(response => {
                 if (response.data.resultCode === 0)
                     this.props.setData(response.data.data)                // TODO sec 5)
