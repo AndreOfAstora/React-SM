@@ -1,15 +1,14 @@
-import * as axios from "axios";
 import React from "react";
 import Users from "./Users";
 import styles from './Users.module.scss';
 import Preloader from "../commons/Preloader/Preloader";
-import { API } from "../../utils/apiURL";
+
+import { getUsers } from "../../api/api.js";
 
 
 
 // TODO:
-// 1) Объеденить метод composeRequest и отправку генерируемого им запроса в один метод, с возможностью забросить коллбэк, выполняемый после отправки запроса (могут понадобиться промисы). 
-// 2) Создать папку commons/preloader, вынести прелоадер в отдельную компоненту, и поместить в упомянотую папку.
+// 1) Объеденить метод composeRequest и отправку генерируемого им запроса в один метод, с возможностью забросить коллбэк, выполняемый после отправки запроса (могут понадобиться промисы).
 // 3) Разбить папку src согласно правилам, например так: https://www.taniarascia.com/react-architecture-directory-structure/ 
 
 
@@ -17,8 +16,6 @@ import { API } from "../../utils/apiURL";
 
 // В классовой компоненте реакта обязательным являеться только метод render(). 
 
-
-console.log(styles);
 
 
 class UsersAPIComponent extends React.Component {
@@ -43,13 +40,10 @@ class UsersAPIComponent extends React.Component {
 
     componentDidMount() {  //Mispronunciation of any lifecycle method name wil result in a bug
         this.props.setIsLoading(true);
-        axios.get(
-                this.composeRequest(this.props.currentPage),
-                {withCredentials: true}
-            )
-            .then(response =>{ 
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersNumber(response.data.totalCount);
+        getUsers(this.props.currentPage, this.props.pageSize)
+            .then(userData =>{ 
+                this.props.setUsers(userData.items);
+                this.props.setTotalUsersNumber(userData.totalCount);
                 this.props.setIsLoading(false);
 
             });
@@ -59,22 +53,15 @@ class UsersAPIComponent extends React.Component {
 
     openPage(pageIndex) { 
         this.props.setIsLoading(true);
-        axios.get(  
-                this.composeRequest(pageIndex), 
-                {withCredentials: true}
-            )
-            .then(response =>{ 
-                this.props.setUsers(response.data.items);
+        getUsers(pageIndex, this.props.pageSize)
+            .then(userData =>{ 
+                this.props.setUsers(userData.items);
                 this.props.setIsLoading(false);
             });
         this.props.setCurrentPage(pageIndex);      
     }
 
-    composeRequest(pageIndex){
-        return(API+'/users'+'?'+'page='+parseInt(pageIndex)+'&'+'count='+parseInt(this.props.pageSize))
-        
-    }
-
+    
 
     toggleIsLoading = () => {
         // if  isloading  fallse, set isloading true
