@@ -3,7 +3,7 @@ import Users from "./Users";
 import styles from './Users.module.scss';
 import Preloader from "../commons/Preloader/Preloader";
 
-import { getUsers } from "../../api/api.js";
+import { usersAPI } from "../../api/api.js";
 
 
 
@@ -40,10 +40,10 @@ class UsersAPIComponent extends React.Component {
 
     componentDidMount() {  //Mispronunciation of any lifecycle method name wil result in a bug
         this.props.setIsLoading(true);
-        getUsers(this.props.currentPage, this.props.pageSize)
-            .then(userData =>{ 
-                this.props.setUsers(userData.items);
-                this.props.setTotalUsersNumber(userData.totalCount);
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(data =>{ 
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersNumber(data.totalCount);
                 this.props.setIsLoading(false);
 
             });
@@ -51,16 +51,16 @@ class UsersAPIComponent extends React.Component {
         // Interactions with DOM, running side effects, scheduling updates should be done here.
     }
 
+
     openPage(pageIndex) { 
         this.props.setIsLoading(true);
-        getUsers(pageIndex, this.props.pageSize)
-            .then(userData =>{ 
-                this.props.setUsers(userData.items);
+        usersAPI.getUsers(pageIndex, this.props.pageSize)
+            .then(data =>{ 
+                this.props.setUsers(data.items);
                 this.props.setIsLoading(false);
             });
         this.props.setCurrentPage(pageIndex);      
     }
-
     
 
     toggleIsLoading = () => {
@@ -73,6 +73,7 @@ class UsersAPIComponent extends React.Component {
             this.props.setIsLoading(true);
         }
     }
+
 
     render () {
         
