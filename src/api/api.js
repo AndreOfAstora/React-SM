@@ -15,8 +15,10 @@ const usersInst = axios.create({
 
 const followInst = axios.create({
     baseURL: baseURL,
-    withCredentials: true,
-    'API-KEY': API_KEY
+    withCredentials: true,    
+    headers: {
+        'API-KEY': API_KEY
+    }
 })
 
 
@@ -26,6 +28,21 @@ export const usersAPI = {
     getUsers(pageIndex = 1, pageSize = 5){
         return usersInst.get( 
             '/users?page='+parseInt(pageIndex)+'&count='+parseInt(pageSize),        
+        ).then(response => response.data)
+    }
+}
+
+export const followAPI = {
+    follow(id) {
+        return followInst.post(
+            '/follow/'+id,
+            {}            
+        ).then(response => response.data)
+    },
+
+    unfollow(id) {
+        return followInst.delete(
+            '/follow/'+id 
         ).then(response => response.data)
     }
 }
