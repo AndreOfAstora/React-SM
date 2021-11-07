@@ -5,8 +5,9 @@ import PageIndicatorsList from "./PageIndicatorsList/PageIndicatorsList";
 import styles from './Users.module.scss';
 
 // TODO:
-// 1) Сделать вывод небольшого числа индикаторов страниц.
+
 // 2) Оюъеденить вывод пользователей в UsersList.jsx.
+// 3) Do something with overwhelming number of props
 
 
 
@@ -28,16 +29,21 @@ const Users = (props) => {
 
             {props.users.map((u) =>
 
-                <Item id={u.id}
-                    name={u.name}  // Если свойство в API называеться по другому,
-                                    // либо меняем имя на фронте, либо делаем Data Access Layer (не сейчас)
-                                    // Если свойства в АПИ нет, просим бэкэндщиков добавить, удаляем его или как-то помечаем (например берем все его вызовы в кавычки), чтоб исправить потом 
-                    followed={u.followed}
-                    location={"u.location"}
-                    status={u.status}
-                    follow={props.follow}
-                    unfollow={props.unfollow}
-                    photos={u.photos}
+                <Item id={ u.id }
+                    name={ u.name }  
+                    photos={ u.photos }
+                    location={ "u.location" }
+                    status={ u.status }
+                    
+                    followed={ u.followed }
+
+                    follow={ props.follow }
+                    unfollow={ props.unfollow }
+
+                    isDisabled = { props.isDisabled }
+                    disabled = { props.disabled }
+                    disable = { props.disable }
+                    enable = { props.enable }               
                 />)}
         </div>
     )

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setIsLoading, setTotalUsersNumber, setUsers, unfollow } from "../../redux/usersReducer";
+import { disable, enable, follow, setCurrentPage, setIsLoading, setTotalUsersNumber, setUsers, unfollow } from "../../redux/usersReducer";
 import UsersAPIComponent from "./UsersAPIComponent";
 
 
@@ -12,7 +12,10 @@ let mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     totalUsersNumber: state.usersPage.totalUsersNumber,
     currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading
+    isLoading: state.usersPage.isLoading,
+
+    isDisabled: state.usersPage.isDisabled,
+    disabled: state.usersPage.disabled
   }
 
 }
@@ -28,8 +31,10 @@ const UsersContainer = connect(mapStateToProps, {
         setTotalUsersNumber,
         setCurrentPage,
         
-        setIsLoading
+        setIsLoading,
 
+        disable,
+        enable
     })(UsersAPIComponent);
 
 export default UsersContainer;

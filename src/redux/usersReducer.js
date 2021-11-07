@@ -6,6 +6,10 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 const SET_IS_LOADING = 'SET_IS_LOADING';
 
+const DISABLE = 'DISABLE';
+const ENABLE = 'ENABLE';
+
+
 let initialState = {
     users:[
         // { id: 1, photoUrl: 'https://www.freeiconspng.com/uploads/gucci-logo-hd-picture-free-download-0.png',
@@ -18,8 +22,10 @@ let initialState = {
     pageSize: 5,
     totalUsersNumber: 50,
     currentPage: 1,
-    isLoading: false
-    
+    isLoading: false,
+
+    isDisabled: false,
+    disabled: []
 }
 
 
@@ -52,6 +58,21 @@ const usersReducer = (state = initialState, action) =>{
             }
         }
 
+        case DISABLE: {
+            return {
+                ...state,
+                isDisabled: true,
+                disabled: [...state.disabled, action.id]
+            }
+        }
+        case ENABLE: {            
+            let index = [...state.disabled].indexOf(action.id);
+            return {
+                ...state,
+                isDisabled: false,
+                disabled: [...state.disabled].splice(index+1, 1)
+            }
+        }
 
 
         case SET_USERS: {
@@ -64,14 +85,12 @@ const usersReducer = (state = initialState, action) =>{
                 users: [...action.users]
             }
         }
-
         case SET_TOTAL_USERS_NUMBER: {
             return {
                 ...state,
                 totalUsersNumber: action.totalUsersNumber
             }
         }
-
         case SET_CURRENT_PAGE: {
             return {
                 ...state,
@@ -110,6 +129,11 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 
 
 export const setIsLoading = (isLoading) => ({type: SET_IS_LOADING, isLoading})
+
+
+
+export const disable = (id) => ({type: DISABLE, id})
+export const enable = (id) => ({type: ENABLE, id})
 
 
 
