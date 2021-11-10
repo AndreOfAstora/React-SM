@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { followAPI } from '../../../api/api';
-import userIcon from '../../../assets/Images/userIcon.png';
+import UserIcon from '../../commons/UserIcon/UserIcon';
 
 import styles from './UsersItem.module.scss';
 
@@ -34,14 +34,9 @@ const UsersItem = (props) => {
     return (
         <div className = {styles.container}>
             <span className = {styles.user_left} >
-
                 <NavLink to = {'/profile/' + props.id}>
-                    <img src={ (props.photos.small === null) 
-                            ? userIcon : props.photos.small}
-                        className = {styles.user_icon} 
-                    /> 
-                </NavLink>
-                
+                    <UserIcon src = {props.photos.small}/>                    
+                </NavLink>                
                 <div>
                     {(props.followed==true) 
                         ?<button onClick={cUnfollow} disabled = {

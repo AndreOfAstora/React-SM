@@ -5,11 +5,11 @@ import App from './App';
 import {addPost, updateNewPostText} from './redux/state';
 
 
-let rerenderEntireTree = (state) => {
- debugger;
+let rerenderEntireTree = (state) => { 
  ReactDOM.render(
    <React.StrictMode>   
-     <App state={state} 
+     <App 
+          state={state} 
           addPost={ addPost } 
           updateNewPostText={ updateNewPostText }/>
    </React.StrictMode>,

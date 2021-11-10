@@ -4,9 +4,11 @@ import styles from './Preloader.module.scss';
 
 const Preloader = (props) => {
     return (
-        <div className = {styles.container}>
-            {(props.isLoading) ? <img src = {preloader}/> : null}        
-        </div>       
+        <div className = {styles.container}> {
+            (props.isLoading) 
+                ? <img src = {preloader}/> 
+                : null
+        } </div>
     )
 }
 
