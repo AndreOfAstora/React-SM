@@ -39,11 +39,7 @@ const Users = (props) => {
 
                     follow={ props.follow }
                     unfollow={ props.unfollow }
-
-                    isDisabled = { props.isDisabled }
-                    disabled = { props.disabled }
-                    disable = { props.disable }
-                    enable = { props.enable }               
+                                  
                 />)}
         </div>
     )

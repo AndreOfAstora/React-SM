@@ -92,11 +92,6 @@ class UsersAPIComponent extends React.Component {
 
                         follow = {this.props.follow}
                         unfollow = {this.props.unfollow}
-
-                        isDisabled = {this.props.isDisabled}
-                        disabled = {this.props.disabled} 
-                        disable = {this.props.disable}
-                        enable = {this.props.enable}
                 /> 
 
                 

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { followAPI } from '../../../api/api';
 import UserIcon from '../../commons/UserIcon/UserIcon';
@@ -8,27 +9,37 @@ import styles from './UsersItem.module.scss';
 // TODO:
 
 // 1) Offline scenario for buttons disabler
-// 2) Realize button disable functionality with local state (hooks are prefered)
+// 2) Make disabled button persist between unmounts (local storage or session storage?). Or don't?
+
 
 const UsersItem = (props) => {
+    
+    let [isDisabled, setIsDisabled] = useState(false);
+
+    const enable = () => setIsDisabled(false);
+    const disable = () => setIsDisabled(true);
 
     const cFollow = () => {
-        props.disable(props.id)                            
+        if (isDisabled) return;
+        disable();
         followAPI.follow(props.id)
         .then(data =>{
-            if (data.resultCode === 0)  props.follow(props.id)
-            props.enable(props.id)
-        });
+            if (data.resultCode === 0)  {
+                props.follow(props.id);
+                enable();
+
+        } } );
     }
 
     const cUnfollow = () => {
-        props.disable(props.id)
+        if (isDisabled) return;
+        disable();
         followAPI.unfollow(props.id)
         .then(data => {
-            if (data.resultCode === 0)  
-            props.unfollow(props.id)
-            props.enable(props.id)
-        });
+            if (data.resultCode === 0){
+                props.unfollow(props.id)
+                enable();
+        } } );
     }
 
     return (
@@ -39,16 +50,10 @@ const UsersItem = (props) => {
                 </NavLink>                
                 <div>
                     {(props.followed==true) 
-                        ?<button onClick={cUnfollow} disabled = {
-                            props.isDisabled
-                            && props.disabled.some( el => el === props.id ) 
-                        }>
+                        ?<button onClick={cUnfollow} disabled = { isDisabled }>
                             Unfollow
                         </button>
-                        :<button onClick={cFollow} disabled = {
-                            props.isDisabled
-                            && props.disabled.some( el => el === props.id )
-                        }>
+                        :<button onClick={cFollow} disabled = { isDisabled }>
                             Follow
                         </button>}
                 </div>
