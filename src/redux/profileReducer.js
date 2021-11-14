@@ -1,5 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
 const SET_PROFILE_INFO = 'SET_PROFILE_INFO';
 
@@ -17,8 +17,8 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) =>{
 
-    // To work properly with connect() state should remain immutable   
-
+    // To work properly with connect() state should remain immutable
+    
     switch (action.type) {
         case ADD_POST:{                        
             let newPost = {
