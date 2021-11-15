@@ -3,9 +3,6 @@ import Users from "./Users";
 import styles from './Users.module.scss';
 import Preloader from "../commons/Preloader/Preloader";
 
-import { usersAPI } from "../../api/api.js";
-
-
 
 // TODO:
 // 1) Объеденить метод composeRequest и отправку генерируемого им запроса в один метод, с возможностью забросить коллбэк, выполняемый после отправки запроса (могут понадобиться промисы).
@@ -39,40 +36,21 @@ class UsersAPIComponent extends React.Component {
    
 
     componentDidMount() {  //Mispronunciation of any lifecycle method name wil result in a bug
-        this.props.setIsLoading(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data =>{ 
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersNumber(data.totalCount);
-                this.props.setIsLoading(false);
-
-            });
-
+        this.props.getUsersThunkAC(this.props.currentPage, this.props.pageSize)
+        .then( usersCount => {
+            this.props.setTotalUsersNumber(usersCount);
+        });
         // Interactions with DOM, running side effects, scheduling updates should be done here.
     }
 
 
-    openPage(pageIndex) { 
-        this.props.setIsLoading(true);
-        usersAPI.getUsers(pageIndex, this.props.pageSize)
-            .then(data =>{ 
-                this.props.setUsers(data.items);
-                this.props.setIsLoading(false);
-            });
-        this.props.setCurrentPage(pageIndex);      
+    openPage(pageIndex) {
+        this.props.getUsersThunkAC(pageIndex, this.props.pageSize)
+        .then( () => {
+            this.props.setCurrentPage(pageIndex); 
+        });
     }
     
-
-    toggleIsLoading = () => {
-        // if  isloading  fallse, set isloading true
-        // else if isloading true, set isloading fallse
-    
-        if (this.props.isLoading === true) {
-            this.props.setIsLoading(false);
-        } else if (this.props.isLoading === false) {
-            this.props.setIsLoading(true);
-        }
-    }
 
 
     render () {
@@ -92,8 +70,7 @@ class UsersAPIComponent extends React.Component {
 
                         follow = {this.props.follow}
                         unfollow = {this.props.unfollow}
-                /> 
-
+                />
                 
             </div>
         )

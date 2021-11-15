@@ -1,13 +1,13 @@
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_TOTAL_USERS_NUMBER = 'SET_TOTAL_USERS_NUMBER';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+import { DISABLE,
+        ENABLE, 
+        FOLLOW, 
+        SET_CURRENT_PAGE, 
+        SET_IS_LOADING, 
+        SET_TOTAL_USERS_NUMBER, 
+        SET_USERS, 
+        UNFOLLOW } from "../actions/actionTypes";
 
-const SET_IS_LOADING = 'SET_IS_LOADING';
 
-const DISABLE = 'DISABLE';
-const ENABLE = 'ENABLE';
 
 
 let initialState = {
@@ -113,29 +113,6 @@ const usersReducer = (state = initialState, action) =>{
     }
     
 } 
-
-export const follow = (userId) => ({ type: FOLLOW, userId})
-
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
-
-
-
-export const setUsers = (users) => ({type: SET_USERS, users})
-
-export const setTotalUsersNumber = (totalUsersNumber) => ({type: SET_TOTAL_USERS_NUMBER, totalUsersNumber})
-
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
-
-
-
-export const setIsLoading = (isLoading) => ({type: SET_IS_LOADING, isLoading})
-
-
-
-export const disable = (id) => ({type: DISABLE, id})
-export const enable = (id) => ({type: ENABLE, id})
-
-
 
 export default usersReducer;
 

@@ -1,5 +1,12 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setIsLoading, setTotalUsersNumber, setUsers, unfollow } from "../../redux/usersReducer";
+import { follow, 
+        getUsersThunkAC, 
+        setCurrentPage, 
+        setIsLoading, 
+        setTotalUsersNumber, 
+        setUsers, 
+        unfollow } from "../../actions/usersActions";
+
 import UsersAPIComponent from "./UsersAPIComponent";
 
 
@@ -24,11 +31,10 @@ const UsersContainer = connect(mapStateToProps, {
         follow,
         unfollow,
 
-        setUsers,
         setTotalUsersNumber,
         setCurrentPage,
         
-        setIsLoading
+        getUsersThunkAC
     })(UsersAPIComponent);
 
 export default UsersContainer;
