@@ -29,7 +29,9 @@ const Users = (props) => {
 
             {props.users.map((u) =>
 
-                <Item id={ u.id }
+                <Item 
+                    key = { u.id }
+                    id={ u.id }
                     name={ u.name }  
                     photos={ u.photos }
                     location={ "u.location" }
