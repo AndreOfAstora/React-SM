@@ -7,7 +7,7 @@ import { DISABLE,
         SET_USERS, 
         UNFOLLOW } from "../actions/actionTypes";
         
-import { usersAPI } from "../api/api";
+import { followAPI, usersAPI } from "../api/api";
 
 
 
@@ -25,6 +25,25 @@ export const getUsersThunkAC = (currentPage = 1, pageSize) => {
             });
     }
 }
+
+export const followThunkAC = (id) => (dispatch) => {    
+    return followAPI.follow(id)
+        .then(data => {
+            if ( data.resultCode === 0 ) 
+                dispatch( follow(id) );
+            return data.resultCode
+        })
+}
+
+export const unfollowThunkAC = (id) => (dispatch) => {    
+    return followAPI.unfollow(id)
+        .then(data => {
+            if ( data.resultCode === 0 ) 
+                dispatch( unfollow(id) );
+            return data.resultCode
+        })
+}
+
 
 
 export const follow = (userId) => ({ type: FOLLOW, userId})

@@ -1,13 +1,18 @@
 import { connect } from "react-redux";
 import { follow, 
+        followThunkAC, 
         getUsersThunkAC, 
         setCurrentPage, 
         setIsLoading, 
         setTotalUsersNumber, 
         setUsers, 
-        unfollow } from "../../actions/usersActions";
+        unfollow, 
+        unfollowThunkAC} from "../../actions/usersActions";
 
 import UsersAPIComponent from "./UsersAPIComponent";
+// TODO
+
+// 1) Get rid of this component somehow, and abolish connect in general.
 
 
 
@@ -25,11 +30,10 @@ let mapStateToProps = (state) => {
 }
 
 
-
 const UsersContainer = connect(mapStateToProps, {
     
-        follow,
-        unfollow,
+        followThunkAC,
+        unfollowThunkAC,
 
         setTotalUsersNumber,
         setCurrentPage,

@@ -22,22 +22,21 @@ const UsersItem = (props) => {
     const cFollow = () => {
         if (isDisabled) return;
         disable();
-        followAPI.follow(props.id)
-        .then(data =>{
-            if (data.resultCode === 0)  {
-                props.follow(props.id);
+        
+        props.follow(props.id)
+        .then(res =>{
+            if (res === 0)  {
                 enable();
-
         } } );
     }
 
     const cUnfollow = () => {
         if (isDisabled) return;
         disable();
-        followAPI.unfollow(props.id)
-        .then(data => {
-            if (data.resultCode === 0){
-                props.unfollow(props.id)
+        
+        props.unfollow(props.id)
+        .then(res =>{
+            if (res === 0)  {
                 enable();
         } } );
     }

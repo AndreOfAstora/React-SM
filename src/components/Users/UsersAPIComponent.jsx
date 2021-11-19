@@ -5,7 +5,7 @@ import Preloader from "../commons/Preloader/Preloader";
 
 
 // TODO:
-// 1) Объеденить метод composeRequest и отправку генерируемого им запроса в один метод, с возможностью забросить коллбэк, выполняемый после отправки запроса (могут понадобиться промисы).
+// 1) Get rid of this component in favour of useEffect in Users.jsx.
 // 3) Разбить папку src согласно правилам, например так: https://www.taniarascia.com/react-architecture-directory-structure/ 
 
 
@@ -51,10 +51,10 @@ class UsersAPIComponent extends React.Component {
         });
     }
     
+    
 
 
-    render () {
-        
+    render () {        
         return (
             <div className = {styles.container}>
                 
@@ -68,8 +68,8 @@ class UsersAPIComponent extends React.Component {
                         
                         users = {this.props.users}
 
-                        follow = {this.props.follow}
-                        unfollow = {this.props.unfollow}
+                        follow = {this.props.followThunkAC}
+                        unfollow = {this.props.unfollowThunkAC}
                 />
                 
             </div>
