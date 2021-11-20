@@ -1,6 +1,7 @@
 import React from "react";
+import FollowBtn from "./FolowBtn/FollowBtn";
 
-import Item from "./Item/UsersItem";
+import UserItem from "./Item/UsersItem";
 import PageIndicatorsList from "./PageIndicatorsList/PageIndicatorsList";
 import styles from './Users.module.scss';
 
@@ -27,22 +28,21 @@ const Users = (props) => {
                 />                
             </div>
 
-            {props.users.map((u) =>
+            {props.users.map( (u) =>
 
-                <Item 
+                <UserItem 
                     key = { u.id }
-                    id={ u.id }
-                    name={ u.name }  
-                    photos={ u.photos }
-                    location={ "u.location" }
-                    status={ u.status }
                     
-                    followed={ u.followed }
-
-                    follow={ props.follow }
-                    unfollow={ props.unfollow }
-                                  
-                />)}
+                    user = { u }
+                >
+                    <FollowBtn
+                        id = { u.id }
+                        followed = { u.followed }
+                        follow = { props.follow }
+                        unfollow = { props.unfollow }
+                    />  
+                </UserItem>
+            ) }
         </div>
     )
 }
