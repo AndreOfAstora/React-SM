@@ -2,54 +2,38 @@ import PageIndicator from "./PageIndicator/PageIndicator";
 
 
 const PageIndicatorsList = (props) => {
-    let pages = []; // And element of this array gets trapped inside a closure,
-                    // it is the only reason why routing works.
-                    // The first time, when closure was used intentionaly.
-    let range = 10;
+    let pages = [];
+    let range = 8;
 
     // TODO: refactor setPagesRange
 
-    const setPagesRange = () => {
-
-        if (props.currentPage <= range - 1) {
-            for (let i = 1; i<=range; i++){
-                pages.push(i);
-            }
-
-            pages.push(0);
-            pages.push(props.pagesCount);
-
-        } else if ( (props.pagesCount - range/2 > props.currentPage) && (props.currentPage > range/2) ){
-            
-            pages.push(1);
-            pages.push(0);
-
-            for (let i = props.currentPage - range/2; i<=props.currentPage + range/2; i++){
-                pages.push(i);
-            }
-
-            pages.push(0);
-            pages.push(props.pagesCount);
-
-        } else if (props.currentPage >= props.pagesCount - range + 1) {
-            pages.push(1);
-            pages.push(0);
-
-            for (let i = props.pagesCount - range; i<=props.pagesCount; i++){
-                pages.push(i);
-            }
+    const appendPages = (start, end) => {
+        for (let i = start; i <= end; i++){
+            pages.push(i);
         }
-        // if cp <= range/2
-        //     start = 1 end = range
-        //     
-        // if  (pc - range/2) > cp >  range/2
-        //     start = cp - range/2 end = cp + range/2
-        // if cp >= (pc - range) / 2
     }
 
-    // for (let i = 1; i<=props.pagesCount; i++){
-    //     pages.push(i);
-    // }
+    const setPagesRange = () => {        
+
+        if (props.currentPage < range) {
+            appendPages(1, range);
+            pages.push(0, props.pagesCount);
+
+        }  else if (props.currentPage > props.pagesCount - range +1) {
+            pages.push(1, 0);
+            appendPages(props.pagesCount - range + 1, props.pagesCount);
+
+        }  else {
+            pages.push(1, 0);
+            appendPages(
+                Math.floor(props.currentPage - range/2 +0.5),
+                Math.floor(props.currentPage + range/2 -0.5));
+            
+            pages.push(0, props.pagesCount);
+        }
+    }
+
+    
     setPagesRange();
     
     return(
@@ -57,15 +41,7 @@ const PageIndicatorsList = (props) => {
             {JSON.stringify(props)}
             {pages.map(p =>                     
                     <PageIndicator
-                        openPage={props.openPage} // Arrow function preserves   this, and array element p gets 
-                                                  // trapped inside the closure, when props.openPage is called 
-                                                  // inside PageIndicator component. 
-                                                  // UPD: ignore the above, page indicator calls openPage like this: openPage(props.number), so closure is not done like it was said above.
-
-                                                  //   UPD: scince PageIndicator is separate component, p
-                                                  // is saved in it's props.number and then passed into openPage, probably closure occures, but i'm not sure;
-                                                  // if it was a plain jsx, arrow function and closure would
-                                                  // be necessary
+                        openPage={props.openPage} 
                         number={p}
                         active={(p === props.currentPage) ? true : false} />)}
         </div>
