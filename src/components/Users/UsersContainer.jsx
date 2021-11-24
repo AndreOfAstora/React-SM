@@ -1,17 +1,15 @@
-import { connect } from "react-redux";
-import {followThunkAC, 
-        getUsersThunkAC, 
-        setCurrentPage,        
-        setTotalUsersNumber,        
-        unfollowThunkAC} from "../../actions/usersActions";
-import Users from "./Users";
+import  { connect } from "react-redux";
+import  { followThunkAC, 
+          getUsersThunkAC, 
+          setCurrentPage,        
+          setTotalUsersNumber,        
+          unfollowThunkAC } from "../../actions/usersActions";
+import  Users from "./Users";
 
 
 // TODO
 
 // 1) Get rid of this component somehow, and abolish connect in general.
-
-
 
 
 

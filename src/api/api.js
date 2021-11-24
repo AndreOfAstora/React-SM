@@ -13,6 +13,10 @@ const usersInst = axios.create({
     withCredentials: true
 })
 
+const profileInst = axios.create({
+    baseURL: baseURL
+})
+
 const followInst = axios.create({
     baseURL: baseURL,
     withCredentials: true,    
@@ -22,7 +26,12 @@ const followInst = axios.create({
 })
 
 
-
+export const profileAPI = {
+  getProfileInfo(id){
+    return profileInst.get('/profile/' + id)
+      .then(response => response.data); 
+  }
+}
 
 export const usersAPI = {
     getUsers(pageIndex = 1, pageSize = 5){

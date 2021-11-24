@@ -5,9 +5,9 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 function Profile(props) {
   return (
     <div className={ s.container }>        
-        <ProfileInfo profileInfo = { props.profileInfo }/>
-        <MyPostsContainer />
-    </div>        
+      <ProfileInfo profileInfo = { props.profileInfo }/>
+      <MyPostsContainer />
+    </div>
   )
 }
 

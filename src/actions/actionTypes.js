@@ -10,3 +10,10 @@ export const SET_IS_LOADING = 'SET_IS_LOADING';
 
 export const DISABLE = 'DISABLE';
 export const ENABLE = 'ENABLE';
+
+// profile
+
+export const ADD_POST = 'ADD_POST';
+export const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+
+export const SET_PROFILE_INFO = 'SET_PROFILE_INFO';
